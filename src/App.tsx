@@ -24,23 +24,16 @@ const App = () => (
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/"
-            element={
-              <Layout>
-                <Routes>
-                  <Route path="/" element={<Aevents />} />
-                  <Route path="/aevents" element={<Aevents />} />
-                  <Route path="/pevents" element={<Pevents />} />
-                  <Route path="/create-pevent" element={<CreatePevent />} />
-                  <Route path="/create-aevent" element={<CreateAevent />} />
-                  <Route path="/wallet" element={<Wallet />} />
-                  <Route path="/profile" element={<Profile />} />
-                </Routes>
-              </Layout>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/*" element={<Layout />}>
+            <Route index element={<Aevents />} />
+            <Route path="aevents" element={<Aevents />} />
+            <Route path="pevents" element={<Pevents />} />
+            <Route path="create-pevent" element={<CreatePevent />} />
+            <Route path="create-aevent" element={<CreateAevent />} />
+            <Route path="wallet" element={<Wallet />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster />
