@@ -35,6 +35,18 @@ const mockPevents: PEvent[] = [
     title: "Food Festival",
     description: "A celebration of local cuisine and food vendors. Help make this culinary experience a reality!",
     likes: 67,
+  },
+  {
+    id: 5,
+    title: "Music in the Park",
+    description: "An evening of live music under the stars. Support this event to bring melody to our community!",
+    likes: 89,
+  },
+  {
+    id: 6,
+    title: "Startup Networking",
+    description: "Connect with fellow entrepreneurs and innovators. Let's make this networking event happen!",
+    likes: 31,
   }
 ];
 
@@ -66,37 +78,52 @@ const Pevents = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Proposed Events</h1>
-        <p className="text-gray-600">Support events you'd like to see happen</p>
+      <div className="text-center mb-8">
+        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
+          Proposed Events
+        </h1>
+        <p className="text-purple-700/70">Support events you'd like to see happen</p>
       </div>
 
-      {events.map((event) => (
-        <Card key={event.id} className="p-6 space-y-4">
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold">{event.title}</h2>
-            
-            <p className="text-gray-600">{event.description}</p>
+      <div className="grid gap-6">
+        {events.map((event) => (
+          <Card 
+            key={event.id} 
+            className="group relative overflow-hidden bg-white/70 backdrop-blur-sm border-purple-100 hover:border-purple-200 transition-all duration-300 hover:shadow-lg hover:shadow-purple-100"
+          >
+            <div className="p-6 space-y-4">
+              <h2 className="text-xl font-semibold text-purple-900 group-hover:text-purple-700 transition-colors">
+                {event.title}
+              </h2>
+              
+              <p className="text-purple-700/70 leading-relaxed">
+                {event.description}
+              </p>
 
-            <Button 
-              variant="ghost" 
-              onClick={() => handleLike(event.id)}
-              className="w-full gap-2 hover:bg-transparent"
-            >
-              <Heart 
-                className={`w-6 h-6 transition-colors ${
-                  likedEvents.has(event.id) ? "fill-red-500 text-red-500" : "text-gray-400"
-                }`} 
-              />
-              <span className={`${
-                likedEvents.has(event.id) ? "text-red-500" : "text-gray-600"
-              }`}>
-                {event.likes} likes
-              </span>
-            </Button>
-          </div>
-        </Card>
-      ))}
+              <Button 
+                variant="ghost" 
+                onClick={() => handleLike(event.id)}
+                className="w-full gap-3 hover:bg-purple-50 group/btn transition-all duration-300"
+              >
+                <Heart 
+                  className={`w-6 h-6 transition-all duration-300 ${
+                    likedEvents.has(event.id) 
+                      ? "fill-purple-500 text-purple-500 scale-110" 
+                      : "text-purple-400 group-hover/btn:scale-110"
+                  }`} 
+                />
+                <span className={`font-medium ${
+                  likedEvents.has(event.id) 
+                    ? "text-purple-500" 
+                    : "text-purple-400"
+                }`}>
+                  {event.likes} likes
+                </span>
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
