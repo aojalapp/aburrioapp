@@ -43,28 +43,7 @@ const CreatePevent = () => {
               id="description"
               placeholder="Describe your event"
               className="mt-1"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              Location
-            </label>
-            <Input
-              id="location"
-              placeholder="Enter event location"
-              className="mt-1"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700">
-              Proposed Date
-            </label>
-            <Input
-              id="date"
-              type="month"
-              className="mt-1"
+              rows={6}
             />
           </div>
         </div>
