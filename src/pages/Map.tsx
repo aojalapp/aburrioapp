@@ -10,7 +10,7 @@ const Map = () => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+    const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
     if (!MAPBOX_TOKEN) {
       console.error('Mapbox token not found');
       return;
