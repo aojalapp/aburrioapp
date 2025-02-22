@@ -20,32 +20,32 @@ const initialMessages: Message[] = [
   {
     id: 2,
     sender: "user",
-    content: "I wanna go to have a few beers with some friends to the city center, but we wanna join us a group of girls",
+    content: "I'd like to organize a language exchange meetup at a café in the city center",
   },
   {
     id: 3,
     sender: "ai",
-    content: "Seems a great plan! At what time approximately would you like to go for those beers to the city center?",
+    content: "That's a great idea! What time would you like to schedule the language exchange meetup?",
   },
   {
     id: 4,
     sender: "user",
-    content: "Today in the afternoon would be great",
+    content: "Today in the afternoon would be perfect",
   },
   {
     id: 5,
     sender: "ai",
-    content: "Awesome! I will post your plan in the plan screen so people can join you. I will only show your plan to users matching your requirements, which in your case are girls. If you want me to help you find any other specific kind of user just let me know (for example, with a specific age range, nationality, language they speak, or hobbies in common)",
+    content: "Great! I can help you set up a language exchange meetup. Would you like me to look for people interested in specific languages or with particular language learning goals?",
   },
   {
     id: 6,
     sender: "user",
-    content: "Cool! Then try to find girls between 20 and 30 years old in the city which speak English, it would be awesome to have a few beers with them so me and my friends can practice English as well!",
+    content: "Yes! I'd like to practice English, and I can help others with Spanish. Maybe we could find people interested in this language exchange?",
   },
   {
     id: 7,
     sender: "ai",
-    content: "Awesome! Creating your plan now... Plan created! You can take a look at it in 'My Plans' and wait for people to join you! I've set it up with: Location: city center, Age range: 20-30, Languages: English, Time: Today afternoon. Good luck!",
+    content: "Perfect! I'm creating your plan now... Done! I've set it up with: Location: city center café, Languages: English/Spanish exchange, Time: Today afternoon. You can find it in 'My Plans'. I'll notify you when other language enthusiasts join!",
   },
 ];
 
