@@ -8,7 +8,7 @@ const Map = () => {
       </div>
       <div className="relative h-[calc(100vh-12rem)] rounded-2xl overflow-hidden shadow-lg bg-white">
         <img 
-          src="/photo-1487958449943-2429e8be8625.jpg"
+          src="/lovable-uploads/1c0caab0-2b88-46bd-8c01-e635a9b47aed.png"
           alt="Map of Seville"
           className="w-full h-full object-cover"
         />
