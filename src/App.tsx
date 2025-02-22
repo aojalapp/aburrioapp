@@ -9,8 +9,10 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import AIChat from "./pages/AIChat";
 import Plans from "./pages/Plans";
+import Calendar from "./pages/Calendar";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
+import Wallet from "./pages/Wallet";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,8 +27,10 @@ const App = () => (
           <Route path="/*" element={<Layout />}>
             <Route index element={<AIChat />} />
             <Route path="plans" element={<Plans />} />
+            <Route path="calendar" element={<Calendar />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="wallet" element={<Wallet />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
