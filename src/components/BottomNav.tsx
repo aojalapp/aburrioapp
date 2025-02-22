@@ -21,13 +21,13 @@ const BottomNav = () => {
         </Link>
 
         <Link 
-          to="/" 
+          to="/chats" 
           className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${
-            isActive("/") ? "text-blue-600" : "text-blue-500"
+            isActive("/chats") ? "text-blue-600" : "text-blue-500"
           }`}
         >
           <MessageCircle className="w-7 h-7" />
-          <span className="text-xs">AI Chat</span>
+          <span className="text-xs">Chats</span>
         </Link>
 
         <Link 
