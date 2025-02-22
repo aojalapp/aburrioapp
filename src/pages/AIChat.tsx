@@ -79,13 +79,13 @@ const AIChat = () => {
           {messages.map((message) => (
             <Card
               key={message.id}
-              className={`p-4 max-w-[80%] ${
+              className={`p-4 ${
                 message.sender === "user"
-                  ? "ml-auto bg-blue-500 text-white"
-                  : "mr-auto bg-white"
+                  ? "ml-auto bg-blue-500 text-white max-w-[85%]"
+                  : "mr-auto bg-white max-w-[85%]"
               }`}
             >
-              {message.content}
+              <div className="break-words">{message.content}</div>
             </Card>
           ))}
         </div>
