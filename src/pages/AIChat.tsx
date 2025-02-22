@@ -73,23 +73,25 @@ const AIChat = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <div className="flex-1 overflow-y-auto space-y-4 p-4">
-        {messages.map((message) => (
-          <Card
-            key={message.id}
-            className={`p-4 max-w-[80%] ${
-              message.sender === "user"
-                ? "ml-auto bg-blue-500 text-white"
-                : "mr-auto bg-white"
-            }`}
-          >
-            {message.content}
-          </Card>
-        ))}
+    <div className="fixed inset-0 pt-[4rem] pb-[5rem]">
+      <div className="absolute top-[4rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4">
+        <div className="space-y-4 py-4">
+          {messages.map((message) => (
+            <Card
+              key={message.id}
+              className={`p-4 max-w-[80%] ${
+                message.sender === "user"
+                  ? "ml-auto bg-blue-500 text-white"
+                  : "mr-auto bg-white"
+              }`}
+            >
+              {message.content}
+            </Card>
+          ))}
+        </div>
       </div>
       
-      <div className="p-4 border-t bg-white">
+      <div className="fixed bottom-[5rem] left-0 right-0 p-4 border-t bg-white">
         <div className="flex gap-2">
           <Input
             value={newMessage}

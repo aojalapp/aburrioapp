@@ -56,8 +56,8 @@ const GroupChat = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <div className="flex items-center gap-4 p-4 border-b bg-white">
+    <div className="fixed inset-0 pt-[4rem] pb-[5rem]">
+      <div className="fixed top-[4rem] left-0 right-0 flex items-center gap-4 p-4 border-b bg-white z-10">
         <Button variant="ghost" size="icon" asChild>
           <Link to="/chats">
             <ArrowLeft className="h-5 w-5" />
@@ -66,26 +66,28 @@ const GroupChat = () => {
         <h1 className="font-semibold text-blue-900">{chat.name}</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-4 p-4">
-        {chat.messages.map((message) => (
-          <Card
-            key={message.id}
-            className={`p-4 max-w-[80%] ${
-              message.sender === "You"
-                ? "ml-auto bg-blue-500 text-white"
-                : "mr-auto bg-white"
-            }`}
-          >
-            <div className="flex flex-col gap-1">
-              <span className="text-xs opacity-75">{message.sender}</span>
-              <p>{message.content}</p>
-              <span className="text-xs opacity-75 text-right">{message.time}</span>
-            </div>
-          </Card>
-        ))}
+      <div className="absolute top-[8rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4">
+        <div className="space-y-4">
+          {chat.messages.map((message) => (
+            <Card
+              key={message.id}
+              className={`p-4 max-w-[80%] ${
+                message.sender === "You"
+                  ? "ml-auto bg-blue-500 text-white"
+                  : "mr-auto bg-white"
+              }`}
+            >
+              <div className="flex flex-col gap-1">
+                <span className="text-xs opacity-75">{message.sender}</span>
+                <p>{message.content}</p>
+                <span className="text-xs opacity-75 text-right">{message.time}</span>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
 
-      <div className="p-4 border-t bg-white">
+      <div className="fixed bottom-[5rem] left-0 right-0 p-4 border-t bg-white">
         <div className="flex gap-2">
           <Input
             value={newMessage}
