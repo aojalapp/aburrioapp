@@ -24,7 +24,7 @@ const TopBar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-lg border-b border-blue-100 px-6 py-4 z-50 animate-slide-down">
       <div className="max-w-lg mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <Button
             variant="ghost"
             size="icon"

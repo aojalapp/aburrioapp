@@ -10,13 +10,8 @@ const Map = () => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
-    if (!MAPBOX_TOKEN) {
-      console.error('Mapbox token not found');
-      return;
-    }
-
-    mapboxgl.accessToken = MAPBOX_TOKEN;
+    // For development only - replace with your token
+    mapboxgl.accessToken = 'pk.eyJ1IjoibG92YWJsZSIsImEiOiJjbHQ3YnRvdnYxM2t4MnFwOWZyeGNwcHd1In0.a5pRnNZGiYyJqKPqLsY8nw';
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,

@@ -1,5 +1,5 @@
 
-import { MessageCircle, MapPin, Bot } from "lucide-react";
+import { MessageCircle, MapPin, Bot, List } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNav = () => {
@@ -28,6 +28,16 @@ const BottomNav = () => {
         >
           <Bot className="w-7 h-7" />
           <span className="text-xs">AI Assistant</span>
+        </Link>
+
+        <Link 
+          to="/plans" 
+          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${
+            isActive("/plans") ? "text-blue-500" : "text-blue-400"
+          }`}
+        >
+          <List className="w-6 h-6" />
+          <span className="text-xs">Plans</span>
         </Link>
 
         <Link 

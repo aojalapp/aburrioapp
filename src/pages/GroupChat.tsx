@@ -57,7 +57,7 @@ const GroupChat = () => {
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <div className="flex items-center gap-4 p-4 border-b">
+      <div className="flex items-center gap-4 p-4 border-b bg-white">
         <Button variant="ghost" size="icon" asChild>
           <Link to="/chats">
             <ArrowLeft className="h-5 w-5" />

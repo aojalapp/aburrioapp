@@ -1,8 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { LogOut, UserCog, Trash2 } from "lucide-react";
+import { LogOut, UserCog, Trash2, Wallet, Calendar, QrCode } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { toast } = useToast();
@@ -29,6 +30,39 @@ const Profile = () => {
         </div>
 
         <div className="space-y-3">
+          <Button
+            variant="outline"
+            className="w-full justify-start"
+            asChild
+          >
+            <Link to="/wallet">
+              <Wallet className="mr-2" />
+              Wallet
+            </Link>
+          </Button>
+
+          <Button
+            variant="outline"
+            className="w-full justify-start"
+            asChild
+          >
+            <Link to="/tickets">
+              <QrCode className="mr-2" />
+              My Tickets
+            </Link>
+          </Button>
+
+          <Button
+            variant="outline"
+            className="w-full justify-start"
+            asChild
+          >
+            <Link to="/calendar">
+              <Calendar className="mr-2" />
+              Calendar
+            </Link>
+          </Button>
+
           <Button
             variant="outline"
             className="w-full justify-start"

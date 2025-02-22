@@ -88,6 +88,7 @@ const AIChat = () => {
           </Card>
         ))}
       </div>
+      
       <div className="p-4 border-t bg-white">
         <div className="flex gap-2">
           <Input
