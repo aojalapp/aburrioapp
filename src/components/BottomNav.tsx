@@ -1,5 +1,5 @@
 
-import { MessageCircle, MapPin, Bot, List } from "lucide-react";
+import { MessageCircle, Bot, List } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNav = () => {
@@ -38,16 +38,6 @@ const BottomNav = () => {
         >
           <List className="w-6 h-6" />
           <span className="text-xs">Plans</span>
-        </Link>
-
-        <Link 
-          to="/map" 
-          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${
-            isActive("/map") ? "text-blue-500" : "text-blue-400"
-          }`}
-        >
-          <MapPin className="w-6 h-6" />
-          <span className="text-xs">Map</span>
         </Link>
       </div>
     </nav>

@@ -1,16 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, ArrowRight, Heart } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight, Heart, Options } from "lucide-react";
 import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Filter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type Plan = {
   id: number;
@@ -78,33 +72,39 @@ const Plans = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-blue-900">Available Plans</h1>
-        <p className="text-blue-600">Find your next adventure!</p>
-      </div>
+      <div className="flex items-center justify-between px-4">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-blue-900">Available Plans</h1>
+          <p className="text-blue-600">Find your next adventure!</p>
+        </div>
+        <div className="flex gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Options className="w-5 h-5 text-blue-500" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 bg-white border border-gray-200">
+              <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuItem className="hover:bg-blue-50">Date (Newest first)</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-blue-50">Recently published</DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuLabel>Premium Filters</DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuItem className="hover:bg-blue-50">Age range</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-blue-50">Nationality</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-blue-50">Gender</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-      <div className="flex justify-end">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="gap-2">
-              <Filter className="w-4 h-4" />
-              Sort & Filter
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Date (Newest first)</DropdownMenuItem>
-              <DropdownMenuItem>Recently published</DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuLabel>Premium Filters</DropdownMenuLabel>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Age range</DropdownMenuItem>
-              <DropdownMenuItem>Nationality</DropdownMenuItem>
-              <DropdownMenuItem>Gender</DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          <Button variant="ghost" size="icon" className="rounded-full" asChild>
+            <Link to="/map">
+              <MapPin className="w-5 h-5 text-blue-500" />
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-6">
