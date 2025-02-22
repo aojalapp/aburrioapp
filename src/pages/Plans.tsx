@@ -1,9 +1,9 @@
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, ArrowRight, Heart, Options } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight, Heart, Option } from "lucide-react";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type Plan = {
@@ -81,7 +81,7 @@ const Plans = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Options className="w-5 h-5 text-blue-500" />
+                <Option className="w-5 h-5 text-blue-500" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-white border border-gray-200">
