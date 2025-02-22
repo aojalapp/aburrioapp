@@ -17,7 +17,7 @@ const TopBar = () => {
       description: checked 
         ? "Other users can now see you're actively looking for a plan today" 
         : "Turn this on again when you're bored and looking for a plan",
-      variant: checked ? "default" : "secondary",
+      variant: "default", // Changed from "secondary" to "default"
     });
   };
 
