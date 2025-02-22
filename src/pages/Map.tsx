@@ -10,14 +10,19 @@ const Map = () => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    // Initialize map
-    mapboxgl.accessToken = 'YOUR_MAPBOX_TOKEN'; // Replace with your Mapbox token
+    const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN;
+    if (!MAPBOX_TOKEN) {
+      console.error('Mapbox token not found');
+      return;
+    }
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v11',
-      center: [-3.7038, 40.4168], // Madrid coordinates as example
-      zoom: 12
+      center: [-5.9845, 37.3891], // Seville coordinates
+      zoom: 13
     });
 
     // Add navigation controls

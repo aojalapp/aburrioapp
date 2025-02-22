@@ -88,34 +88,20 @@ const Plans = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="gap-2">
               <Filter className="w-4 h-4" />
-              Filters
+              Sort & Filter
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Plan Type</DropdownMenuLabel>
+            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
             <DropdownMenuGroup>
-              <DropdownMenuItem>Beers & Drinks</DropdownMenuItem>
-              <DropdownMenuItem>Sports</DropdownMenuItem>
-              <DropdownMenuItem>Culture</DropdownMenuItem>
-              <DropdownMenuItem>Food</DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuLabel>Distance</DropdownMenuLabel>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Nearby (&lt;1km)</DropdownMenuItem>
-              <DropdownMenuItem>Walking distance</DropdownMenuItem>
-              <DropdownMenuItem>City center</DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuLabel>Date</DropdownMenuLabel>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Today</DropdownMenuItem>
-              <DropdownMenuItem>Tomorrow</DropdownMenuItem>
-              <DropdownMenuItem>This weekend</DropdownMenuItem>
+              <DropdownMenuItem>Date (Newest first)</DropdownMenuItem>
+              <DropdownMenuItem>Recently published</DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuLabel>Premium Filters</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem>Age range</DropdownMenuItem>
+              <DropdownMenuItem>Nationality</DropdownMenuItem>
               <DropdownMenuItem>Gender</DropdownMenuItem>
-              <DropdownMenuItem>Languages</DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
