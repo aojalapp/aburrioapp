@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +13,7 @@ import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Wallet from "./pages/Wallet";
 import NotFound from "./pages/NotFound";
+import Map from "./pages/Map";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +27,7 @@ const App = () => (
           <Route path="/*" element={<Layout />}>
             <Route index element={<AIChat />} />
             <Route path="plans" element={<Plans />} />
+            <Route path="map" element={<Map />} />
             <Route path="calendar" element={<Calendar />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="profile" element={<Profile />} />

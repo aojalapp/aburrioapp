@@ -1,5 +1,5 @@
 
-import { Calendar, MapPin } from "lucide-react";
+import { MessageCircle, MapPin, Calendar } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNav = () => {
@@ -18,6 +18,16 @@ const BottomNav = () => {
         >
           <Calendar className="w-6 h-6" />
           <span className="text-xs">Plans</span>
+        </Link>
+
+        <Link 
+          to="/" 
+          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${
+            isActive("/") ? "text-blue-600" : "text-blue-500"
+          }`}
+        >
+          <MessageCircle className="w-7 h-7" />
+          <span className="text-xs">AI Chat</span>
         </Link>
 
         <Link 

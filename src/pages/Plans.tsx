@@ -1,8 +1,16 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, ArrowRight, Heart } from "lucide-react";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Filter } from "lucide-react";
 
 type Plan = {
   id: number;
@@ -73,6 +81,44 @@ const Plans = () => {
       <div className="text-center">
         <h1 className="text-2xl font-bold text-blue-900">Available Plans</h1>
         <p className="text-blue-600">Find your next adventure!</p>
+      </div>
+
+      <div className="flex justify-end">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="gap-2">
+              <Filter className="w-4 h-4" />
+              Filters
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>Plan Type</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Beers & Drinks</DropdownMenuItem>
+              <DropdownMenuItem>Sports</DropdownMenuItem>
+              <DropdownMenuItem>Culture</DropdownMenuItem>
+              <DropdownMenuItem>Food</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuLabel>Distance</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Nearby (&lt;1km)</DropdownMenuItem>
+              <DropdownMenuItem>Walking distance</DropdownMenuItem>
+              <DropdownMenuItem>City center</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuLabel>Date</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Today</DropdownMenuItem>
+              <DropdownMenuItem>Tomorrow</DropdownMenuItem>
+              <DropdownMenuItem>This weekend</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuLabel>Premium Filters</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Age range</DropdownMenuItem>
+              <DropdownMenuItem>Gender</DropdownMenuItem>
+              <DropdownMenuItem>Languages</DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <div className="space-y-6">
