@@ -21,36 +21,36 @@ type Plan = {
 const mockPlans: Plan[] = [
   {
     id: 1,
-    title: "Beers & English Practice",
-    description: "Looking for people to practice English while having some beers in the city center. Age range: 20-30, English speakers welcome!",
+    title: "Cervezas y práctica de inglés",
+    description: "Buscando gente para practicar inglés mientras tomamos unas cervezas en el centro. Rango de edad: 20-30, hablantes de inglés bienvenidos.",
     isAdmin: false,
     likes: 12
   },
   {
     id: 2,
-    title: "Tech Conference 2024",
-    description: "Join us for an exciting conference featuring the latest in technology and innovation.",
+    title: "Conferencia de Tecnología 2024",
+    description: "Únete a nosotros para una emocionante conferencia con lo último en tecnología e innovación.",
     isAdmin: true,
-    date: "March 15, 2024",
-    location: "Convention Center",
-    capacity: "250 spots",
+    date: "15 de marzo, 2024",
+    location: "Centro de Convenciones",
+    capacity: "250 plazas",
     image: "https://images.unsplash.com/photo-1501854140801-50d01698950b"
   },
   {
     id: 3,
-    title: "Weekend Hiking",
-    description: "Planning a hiking trip this weekend. Looking for nature enthusiasts!",
+    title: "Senderismo de fin de semana",
+    description: "Planeando una excursión de senderismo este fin de semana. ¡Buscamos entusiastas de la naturaleza!",
     isAdmin: false,
     likes: 8
   },
   {
     id: 4,
-    title: "AI Summit",
-    description: "Explore the future of artificial intelligence with leading experts.",
+    title: "Cumbre de IA",
+    description: "Explora el futuro de la inteligencia artificial con expertos líderes.",
     isAdmin: true,
-    date: "April 20, 2024",
+    date: "20 de abril, 2024",
     location: "Tech Hub",
-    capacity: "300 spots",
+    capacity: "300 plazas",
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
   }
 ];
@@ -74,34 +74,34 @@ const Plans = () => {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-center justify-between px-4">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-blue-900">Available Plans</h1>
-          <p className="text-blue-600">Find your next adventure!</p>
+          <h1 className="text-2xl font-bold text-green-900">Planes Disponibles</h1>
+          <p className="text-green-600">¡Encuentra tu próxima aventura!</p>
         </div>
         <div className="flex gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Option className="w-5 h-5 text-blue-500" />
+                <Option className="w-5 h-5 text-green-500" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-white border border-gray-200">
-              <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+              <DropdownMenuLabel>Ordenar por</DropdownMenuLabel>
               <DropdownMenuGroup>
-                <DropdownMenuItem className="hover:bg-blue-50">Date (Newest first)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-blue-50">Recently published</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-green-50">Fecha (Más recientes primero)</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-green-50">Recientemente publicados</DropdownMenuItem>
               </DropdownMenuGroup>
-              <DropdownMenuLabel>Premium Filters</DropdownMenuLabel>
+              <DropdownMenuLabel>Filtros Premium</DropdownMenuLabel>
               <DropdownMenuGroup>
-                <DropdownMenuItem className="hover:bg-blue-50">Age range</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-blue-50">Nationality</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-blue-50">Gender</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-green-50">Rango de edad</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-green-50">Nacionalidad</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-green-50">Género</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <Button variant="ghost" size="icon" className="rounded-full" asChild>
             <Link to="/map">
-              <MapPin className="w-5 h-5 text-blue-500" />
+              <MapPin className="w-5 h-5 text-green-500" />
             </Link>
           </Button>
         </div>
@@ -113,8 +113,8 @@ const Plans = () => {
             key={plan.id}
             className={`overflow-hidden ${
               plan.isAdmin 
-                ? "bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200"
-                : "bg-white border-blue-100"
+                ? "bg-gradient-to-br from-green-50 to-green-100 border-green-200"
+                : "bg-white border-green-100"
             }`}
           >
             {plan.isAdmin && plan.image && (
@@ -129,10 +129,10 @@ const Plans = () => {
             )}
 
             <div className="p-6 space-y-4">
-              <h2 className="text-xl font-semibold text-blue-900">{plan.title}</h2>
+              <h2 className="text-xl font-semibold text-green-900">{plan.title}</h2>
               
               {plan.isAdmin && (
-                <div className="flex items-center gap-4 text-blue-600">
+                <div className="flex items-center gap-4 text-green-600">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     <span className="text-sm">{plan.date}</span>
@@ -148,7 +148,7 @@ const Plans = () => {
                 </div>
               )}
 
-              <p className="text-blue-700">{plan.description}</p>
+              <p className="text-green-700">{plan.description}</p>
 
               <div className="flex gap-4">
                 {!plan.isAdmin && (
@@ -161,14 +161,14 @@ const Plans = () => {
                       className={`w-5 h-5 ${
                         likedPlans.has(plan.id) 
                           ? "fill-red-500 text-red-500" 
-                          : "text-blue-400"
+                          : "text-green-400"
                       }`} 
                     />
-                    <span>{plan.likes} likes</span>
+                    <span>{plan.likes} me gusta</span>
                   </Button>
                 )}
-                <Button className="flex-1 bg-blue-500 hover:bg-blue-600">
-                  {plan.isAdmin ? "Book Now" : "Join Plan"}
+                <Button className="flex-1 bg-green-500 hover:bg-green-600">
+                  {plan.isAdmin ? "Reservar Ahora" : "Unirse al Plan"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,43 +15,44 @@ const initialMessages: Message[] = [
   {
     id: 1,
     sender: "ai",
-    content: "Hello! What kind of plan would you like to do today?",
+    content: "¡Hola! ¿Qué tipo de plan te gustaría hacer hoy?",
   },
   {
     id: 2,
     sender: "user",
-    content: "I'd like to organize a language exchange meetup at a café in the city center",
+    content: "Me gustaría organizar un intercambio de idiomas en un café del centro de la ciudad",
   },
   {
     id: 3,
     sender: "ai",
-    content: "That's a great idea! What time would you like to schedule the language exchange meetup?",
+    content: "¡Es una gran idea! ¿A qué hora te gustaría programar el intercambio de idiomas?",
   },
   {
     id: 4,
     sender: "user",
-    content: "Today in the afternoon would be perfect",
+    content: "Hoy por la tarde sería perfecto",
   },
   {
     id: 5,
     sender: "ai",
-    content: "Great! I can help you set up a language exchange meetup. Would you like me to look for people interested in specific languages or with particular language learning goals?",
+    content: "¡Genial! Puedo ayudarte a organizar un intercambio de idiomas. ¿Te gustaría que busque personas interesadas en idiomas específicos o con objetivos particulares de aprendizaje?",
   },
   {
     id: 6,
     sender: "user",
-    content: "Yes! I'd like to practice English, and I can help others with Spanish. Maybe we could find people interested in this language exchange?",
+    content: "¡Sí! Me gustaría practicar inglés y puedo ayudar a otros con español. ¿Podríamos encontrar personas interesadas en este intercambio de idiomas?",
   },
   {
     id: 7,
     sender: "ai",
-    content: "Perfect! I'm creating your plan now... Done! I've set it up with: Location: city center café, Languages: English/Spanish exchange, Time: Today afternoon. You can find it in 'My Plans'. I'll notify you when other language enthusiasts join!",
+    content: "¡Perfecto! Estoy creando tu plan ahora... ¡Listo! Lo he configurado con: Ubicación: café del centro, Idiomas: intercambio inglés/español, Hora: Hoy por la tarde. Puedes encontrarlo en 'Mis Planes'. ¡Te notificaré cuando otros entusiastas de los idiomas se unan!",
   },
 ];
 
 const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [newMessage, setNewMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSend = () => {
     if (newMessage.trim()) {
@@ -61,14 +62,47 @@ const AIChat = () => {
         content: newMessage.trim(),
       }]);
       setNewMessage("");
-      // Simulate AI response
+      setIsLoading(true);
+      
+      // Simulate AI thinking and response time
       setTimeout(() => {
-        setMessages(prev => [...prev, {
-          id: prev.length + 1,
-          sender: "ai",
-          content: "I'll help you create a plan based on that! What other details would you like to add?",
-        }]);
+        fetchAIResponse(newMessage.trim());
       }, 1000);
+    }
+  };
+
+  const fetchAIResponse = async (userMessage: string) => {
+    try {
+      // In a real implementation, this would call an API for AI responses
+      // Here we're simulating a more dynamic AI response
+
+      let aiResponse = "Te ayudaré a crear un plan según lo que me has pedido. ¿Qué otros detalles te gustaría añadir?";
+      
+      if (userMessage.toLowerCase().includes("hola") || userMessage.toLowerCase().includes("hey")) {
+        aiResponse = "¡Hola! ¿En qué puedo ayudarte hoy?";
+      } else if (userMessage.toLowerCase().includes("tiempo") || userMessage.toLowerCase().includes("clima")) {
+        aiResponse = "Lo siento, no puedo acceder a información del clima en tiempo real. ¿Te gustaría crear un plan que tenga en cuenta el clima?";
+      } else if (userMessage.toLowerCase().includes("cine") || userMessage.toLowerCase().includes("película")) {
+        aiResponse = "¡Un plan de cine suena genial! ¿Te gustaría que sea hoy o prefieres otro día? Puedo ayudarte a encontrar personas interesadas.";
+      } else if (userMessage.toLowerCase().includes("restaurante") || userMessage.toLowerCase().includes("comer")) {
+        aiResponse = "¡Perfecto! Podría ayudarte a organizar una salida a un restaurante. ¿Tienes alguna preferencia de cocina o ubicación?";
+      }
+      
+      setMessages(prev => [...prev, {
+        id: prev.length + 1,
+        sender: "ai",
+        content: aiResponse,
+      }]);
+      
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error al obtener respuesta de IA:", error);
+      setMessages(prev => [...prev, {
+        id: prev.length + 1,
+        sender: "ai",
+        content: "Lo siento, ha ocurrido un error al procesar tu mensaje. ¿Podrías intentarlo de nuevo?",
+      }]);
+      setIsLoading(false);
     }
   };
 
@@ -81,13 +115,22 @@ const AIChat = () => {
               key={message.id}
               className={`p-4 ${
                 message.sender === "user"
-                  ? "ml-auto bg-blue-500 text-white max-w-[85%]"
+                  ? "ml-auto bg-green-500 text-white max-w-[85%]"
                   : "mr-auto bg-white max-w-[85%]"
               }`}
             >
               <div className="break-words">{message.content}</div>
             </Card>
           ))}
+          {isLoading && (
+            <Card className="p-4 mr-auto bg-white max-w-[85%]">
+              <div className="flex space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+              </div>
+            </Card>
+          )}
         </div>
       </div>
       
@@ -96,7 +139,7 @@ const AIChat = () => {
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Tell me what plan you want to do..."
+            placeholder="Dime qué plan quieres hacer..."
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             className="flex-1"
           />
