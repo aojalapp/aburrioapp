@@ -1,9 +1,11 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 type Message = {
   id: number;
@@ -17,84 +19,74 @@ const initialMessages: Message[] = [
     sender: "ai",
     content: "¡Hola! ¿Qué tipo de plan te gustaría hacer hoy?",
   },
-  {
-    id: 2,
-    sender: "user",
-    content: "Me gustaría organizar un intercambio de idiomas en un café del centro de la ciudad",
-  },
-  {
-    id: 3,
-    sender: "ai",
-    content: "¡Es una gran idea! ¿A qué hora te gustaría programar el intercambio de idiomas?",
-  },
-  {
-    id: 4,
-    sender: "user",
-    content: "Hoy por la tarde sería perfecto",
-  },
-  {
-    id: 5,
-    sender: "ai",
-    content: "¡Genial! Puedo ayudarte a organizar un intercambio de idiomas. ¿Te gustaría que busque personas interesadas en idiomas específicos o con objetivos particulares de aprendizaje?",
-  },
-  {
-    id: 6,
-    sender: "user",
-    content: "¡Sí! Me gustaría practicar inglés y puedo ayudar a otros con español. ¿Podríamos encontrar personas interesadas en este intercambio de idiomas?",
-  },
-  {
-    id: 7,
-    sender: "ai",
-    content: "¡Perfecto! Estoy creando tu plan ahora... ¡Listo! Lo he configurado con: Ubicación: café del centro, Idiomas: intercambio inglés/español, Hora: Hoy por la tarde. Puedes encontrarlo en 'Mis Planes'. ¡Te notificaré cuando otros entusiastas de los idiomas se unan!",
-  },
 ];
 
 const AIChat = () => {
+  const { toast } = useToast();
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSend = () => {
     if (newMessage.trim()) {
-      setMessages([...messages, {
+      const userMessage = {
         id: messages.length + 1,
         sender: "user",
         content: newMessage.trim(),
-      }]);
+      } as Message;
+      
+      setMessages([...messages, userMessage]);
       setNewMessage("");
       setIsLoading(true);
       
-      // Simulate AI thinking and response time
-      setTimeout(() => {
-        fetchAIResponse(newMessage.trim());
-      }, 1000);
+      // Enviamos el mensaje al backend
+      fetchAIResponse(userMessage);
     }
   };
 
-  const fetchAIResponse = async (userMessage: string) => {
+  const fetchAIResponse = async (userMessage: Message) => {
     try {
-      // In a real implementation, this would call an API for AI responses
-      // Here we're simulating a more dynamic AI response
+      // Formateamos los mensajes para OpenAI
+      const formattedMessages = messages.concat(userMessage).map(msg => ({
+        role: msg.sender === "user" ? "user" : "assistant",
+        content: msg.content
+      }));
 
-      let aiResponse = "Te ayudaré a crear un plan según lo que me has pedido. ¿Qué otros detalles te gustaría añadir?";
-      
-      if (userMessage.toLowerCase().includes("hola") || userMessage.toLowerCase().includes("hey")) {
-        aiResponse = "¡Hola! ¿En qué puedo ayudarte hoy?";
-      } else if (userMessage.toLowerCase().includes("tiempo") || userMessage.toLowerCase().includes("clima")) {
-        aiResponse = "Lo siento, no puedo acceder a información del clima en tiempo real. ¿Te gustaría crear un plan que tenga en cuenta el clima?";
-      } else if (userMessage.toLowerCase().includes("cine") || userMessage.toLowerCase().includes("película")) {
-        aiResponse = "¡Un plan de cine suena genial! ¿Te gustaría que sea hoy o prefieres otro día? Puedo ayudarte a encontrar personas interesadas.";
-      } else if (userMessage.toLowerCase().includes("restaurante") || userMessage.toLowerCase().includes("comer")) {
-        aiResponse = "¡Perfecto! Podría ayudarte a organizar una salida a un restaurante. ¿Tienes alguna preferencia de cocina o ubicación?";
+      // Llamamos a nuestra Edge Function
+      const { data, error } = await supabase.functions.invoke("chat-ai", {
+        body: { messages: formattedMessages },
+      });
+
+      if (error) {
+        console.error("Error al obtener respuesta:", error);
+        toast({
+          title: "Error",
+          description: "No se pudo obtener una respuesta. Por favor, intenta de nuevo.",
+          variant: "destructive",
+        });
+        
+        setMessages(prevMessages => [...prevMessages, {
+          id: prevMessages.length + 1,
+          sender: "ai",
+          content: "Lo siento, ha ocurrido un error al procesar tu mensaje. ¿Podrías intentarlo de nuevo?",
+        }]);
+      } else {
+        // Añadimos la respuesta de la IA
+        setMessages(prevMessages => [...prevMessages, {
+          id: prevMessages.length + 1,
+          sender: "ai",
+          content: data.content,
+        }]);
       }
-      
-      setMessages(prev => [...prev, {
-        id: prev.length + 1,
-        sender: "ai",
-        content: aiResponse,
-      }]);
-      
-      setIsLoading(false);
     } catch (error) {
       console.error("Error al obtener respuesta de IA:", error);
       setMessages(prev => [...prev, {
@@ -102,6 +94,7 @@ const AIChat = () => {
         sender: "ai",
         content: "Lo siento, ha ocurrido un error al procesar tu mensaje. ¿Podrías intentarlo de nuevo?",
       }]);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -131,6 +124,7 @@ const AIChat = () => {
               </div>
             </Card>
           )}
+          <div ref={bottomRef} />
         </div>
       </div>
       
