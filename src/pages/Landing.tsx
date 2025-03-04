@@ -1,6 +1,7 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Landing = () => {
@@ -10,6 +11,7 @@ const Landing = () => {
   const [userInput, setUserInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [currentStage, setCurrentStage] = useState(0);
+  const [showChat, setShowChat] = useState(false);
   
   const simulateChat = (input: string) => {
     setChatMessages(prev => [...prev, { sender: "user", text: input }]);
@@ -66,12 +68,15 @@ const Landing = () => {
               <h1 className="text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
                 Aburrio
               </h1>
+              <span className="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded-full absolute -top-2 -right-8 transform rotate-12">
+                Producto 100% andaluz
+              </span>
             </div>
             <h2 className="text-3xl font-medium text-gray-700">
               Conecta con personas y planes de tu ciudad
             </h2>
             <p className="text-xl text-gray-600">
-              Descubre las mejores experiencias cerca de ti con nuestro algoritmo de recomendación increíblemente preciso.
+              Descubre las mejores experiencias y conoce nuevas personas cerca con nuestro algoritmo de recomendación con la precisión de Google, y la cercanía de Nico
             </p>
             <div className="flex gap-4 pt-4">
               <Button size="lg" className="text-lg px-8">
@@ -87,74 +92,108 @@ const Landing = () => {
               <div className="w-32 h-4 bg-black rounded-b-xl"></div>
             </div>
             
-            <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
-              <div className="bg-primary-600 text-white p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                      <div className="text-primary-600 font-bold text-lg">A</div>
+            {!showChat ? (
+              <div className="absolute inset-0 pt-6 flex flex-col">
+                <div className="bg-primary-600 text-white p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                        <div className="text-primary-600 font-bold text-lg">A</div>
+                      </div>
+                      <h3 className="font-semibold">Aburrio</h3>
                     </div>
-                    <h3 className="font-semibold">Aburrio</h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span className="text-sm">En línea</span>
                   </div>
                 </div>
-                <div className="mt-2 text-xs opacity-80">NicoAI - Tu asistente personal</div>
-              </div>
-              
-              <div id="phone-chat-container" className="h-[420px] overflow-y-auto p-4 space-y-3">
-                {chatMessages.map((msg, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`max-w-[80%] p-3 rounded-2xl ${
-                      msg.sender === "bot" 
-                        ? "bg-primary-100 text-gray-800" 
-                        : "bg-primary-500 text-white ml-auto"
-                    }`}
+                <div className="flex-1 flex flex-col items-center justify-center p-8 bg-gradient-to-b from-primary-50 to-white">
+                  <img 
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+                    alt="Beautiful scenery" 
+                    className="w-full h-48 object-cover rounded-xl mb-6"
+                  />
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 text-center">
+                    ¡Descubre planes cerca de ti!
+                  </h3>
+                  <p className="text-center text-gray-600 mb-6">
+                    Chatea con NicoAI y encuentra actividades perfectas para ti
+                  </p>
+                  <Button 
+                    onClick={() => setShowChat(true)} 
+                    className="w-full py-6 text-lg"
                   >
-                    {msg.text}
-                  </div>
-                ))}
-                {isTyping && (
-                  <div className="max-w-[80%] p-3 rounded-2xl bg-primary-100 text-gray-800">
-                    <div className="flex space-x-2">
-                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                    Probar ahora <ChevronRight className="ml-2" />
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
+                <div className="bg-primary-600 text-white p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                        <div className="text-primary-600 font-bold text-lg">A</div>
+                      </div>
+                      <h3 className="font-semibold">Aburrio</h3>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                      <span className="text-sm">En línea</span>
                     </div>
                   </div>
-                )}
+                  <div className="mt-2 text-xs opacity-80">NicoAI - Tu asistente personal</div>
+                </div>
+                
+                <div id="phone-chat-container" className="h-[420px] overflow-y-auto p-4 space-y-3">
+                  {chatMessages.map((msg, idx) => (
+                    <div 
+                      key={idx} 
+                      className={`max-w-[80%] p-3 rounded-2xl ${
+                        msg.sender === "bot" 
+                          ? "bg-primary-100 text-gray-800" 
+                          : "bg-primary-500 text-white ml-auto"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  ))}
+                  {isTyping && (
+                    <div className="max-w-[80%] p-3 rounded-2xl bg-primary-100 text-gray-800">
+                      <div className="flex space-x-2">
+                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
+                  <input
+                    type="text"
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                    placeholder="Escribe tu mensaje..."
+                    className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  />
+                  <button 
+                    type="submit" 
+                    className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+                    disabled={isTyping || !userInput.trim()}
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                </form>
+                
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
               </div>
-              
-              <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
-                <input
-                  type="text"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder="Escribe tu mensaje..."
-                  className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                />
-                <button 
-                  type="submit" 
-                  className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
-                  disabled={isTyping || !userInput.trim()}
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </form>
-              
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
-            </div>
+            )}
           </div>
           
-          <div className="absolute top-20 -right-12 glass-card p-3 animate-float-slow shadow-xl max-w-[140px]">
+          <div className="absolute top-20 right-0 glass-card p-2 animate-float-slow shadow-xl max-w-[120px]">
             <p className="text-primary-700 font-semibold text-xs">¡5 personas cerca de ti!</p>
             <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
           </div>
           
-          <div className="absolute bottom-20 -left-12 glass-card p-3 animate-float-slow-reverse shadow-xl max-w-[140px]">
+          <div className="absolute bottom-20 left-0 glass-card p-2 animate-float-slow-reverse shadow-xl max-w-[120px]">
             <p className="text-primary-700 font-semibold text-xs">¡Nuevo plan!</p>
             <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
