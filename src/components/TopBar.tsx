@@ -51,8 +51,7 @@ const TopBar = () => {
           </Button>
         </div>
 
-        <Link to="/" className="relative">
-          <div className="absolute inset-0 opacity-20 overflow-hidden rounded-lg transform scale-110" style={{ backgroundImage: `url('/lovable-uploads/13da4e97-2cde-4279-98ee-ee38979b96a5.png')`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'saturate(1.2)' }}></div>
+        <Link to="/" className="relative andalusian-title-bg">
           <span className="relative text-2xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent tracking-wider px-2 py-1 z-10">Aburrio</span>
         </Link>
 
