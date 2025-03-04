@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send } from "lucide-react";
@@ -13,16 +12,13 @@ const Landing = () => {
   const [currentStage, setCurrentStage] = useState(0);
   
   const simulateChat = (input: string) => {
-    // Add user message
     setChatMessages(prev => [...prev, { sender: "user", text: input }]);
     setUserInput("");
     setIsTyping(true);
     
-    // Simulate bot thinking
     setTimeout(() => {
       let botResponse = "";
       
-      // Simulate conversation flow based on stage
       if (currentStage === 0) {
         botResponse = "¡Genial! Para poder recomendarte planes personalizados, me gustaría conocerte un poco mejor. ¿Puedes decirme cuántos años tienes?";
         setCurrentStage(1);
@@ -49,7 +45,6 @@ const Landing = () => {
     }
   };
 
-  // Auto-scroll chat to bottom
   useEffect(() => {
     const chatContainer = document.getElementById("phone-chat-container");
     if (chatContainer) {
@@ -59,7 +54,6 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-foreground">
-      {/* Enhanced Hero Section with Interactive Phone */}
       <section className="relative min-h-screen flex items-center justify-between px-16 py-20 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary-100 opacity-60 blur-3xl"></div>
@@ -87,16 +81,13 @@ const Landing = () => {
           </div>
         </div>
         
-        <div className="w-1/2 flex justify-center">
+        <div className="w-1/2 flex justify-center relative">
           <div className="relative w-[300px] h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
-            {/* Phone Chrome UI */}
             <div className="absolute top-0 left-0 right-0 h-6 bg-black rounded-t-[32px] flex justify-center items-center">
               <div className="w-32 h-4 bg-black rounded-b-xl"></div>
             </div>
             
-            {/* App Interface */}
             <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
-              {/* App Header with Logo */}
               <div className="bg-primary-600 text-white p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -113,7 +104,6 @@ const Landing = () => {
                 <div className="mt-2 text-xs opacity-80">NicoAI - Tu asistente personal</div>
               </div>
               
-              {/* Chat Area */}
               <div id="phone-chat-container" className="h-[420px] overflow-y-auto p-4 space-y-3">
                 {chatMessages.map((msg, idx) => (
                   <div 
@@ -138,7 +128,6 @@ const Landing = () => {
                 )}
               </div>
               
-              {/* Input Area */}
               <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
                 <input
                   type="text"
@@ -156,25 +145,22 @@ const Landing = () => {
                 </button>
               </form>
               
-              {/* App Bottom Bar */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
             </div>
           </div>
           
-          {/* Floating Cards - Fixed positioning to stay within the viewport */}
-          <div className="absolute top-1/3 -right-8 glass-card p-4 animate-float-slow shadow-xl max-w-[180px]">
-            <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
+          <div className="absolute top-20 -right-12 glass-card p-3 animate-float-slow shadow-xl max-w-[140px]">
+            <p className="text-primary-700 font-semibold text-xs">¡5 personas cerca de ti!</p>
             <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
           </div>
           
-          <div className="absolute bottom-1/3 -left-8 glass-card p-4 animate-float-slow-reverse shadow-xl max-w-[180px]">
-            <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
+          <div className="absolute bottom-20 -left-12 glass-card p-3 animate-float-slow-reverse shadow-xl max-w-[140px]">
+            <p className="text-primary-700 font-semibold text-xs">¡Nuevo plan!</p>
             <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -212,7 +198,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
       <section className="py-20 px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -269,7 +254,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Value Proposition Section - Replacing Testimonials */}
       <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 opacity-60 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-primary-100 opacity-30 blur-3xl"></div>
@@ -287,7 +271,6 @@ const Landing = () => {
           </div>
 
           <div className="grid grid-cols-12 gap-8">
-            {/* Left side - stats & key metrics */}
             <div className="col-span-4 space-y-8">
               <div className="glass-card p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
@@ -314,7 +297,6 @@ const Landing = () => {
               </div>
             </div>
             
-            {/* Center - main value proposition */}
             <div className="col-span-4">
               <div className="glass-card h-full p-10 flex flex-col justify-center items-center text-center border-2 border-primary-200 shadow-glow">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6">
@@ -330,7 +312,6 @@ const Landing = () => {
               </div>
             </div>
             
-            {/* Right side - benefits & results */}
             <div className="col-span-4 space-y-8">
               <div className="glass-card p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
@@ -366,7 +347,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* App Features Section */}
       <section className="py-20 px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 gap-16 items-center">
@@ -433,7 +413,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 px-16 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">¿Listo para descubrir tu ciudad?</h2>
@@ -448,7 +427,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-12 px-16 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-4 gap-8 mb-12">
