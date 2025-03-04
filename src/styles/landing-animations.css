@@ -1,37 +1,30 @@
 
-@keyframes float-slow {
+/* ... keep existing code (float animations and glass card styling) */
+
+/* New animations for the Why Aburrio section */
+.animated-profile {
+  animation: slide-horizontal 3s ease-in-out infinite;
+}
+
+@keyframes slide-horizontal {
   0% {
-    transform: translateY(0px);
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(100px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-100px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateX(0);
   }
 }
 
-@keyframes float-slow-reverse {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 5s ease-in-out infinite;
-}
-
-.animate-float-slow-reverse {
-  animation: float-slow-reverse 6s ease-in-out infinite;
-}
-
-/* Glass card styling enhancements */
+/* Enhanced glass card hover effects */
 .glass-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
@@ -48,4 +41,9 @@
 .glass-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Special shadow for highlighted cards */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(186, 230, 253, 0.4);
 }

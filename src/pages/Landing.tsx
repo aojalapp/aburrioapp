@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight, Heart, HeartCrack, UserX, Smartphone, EyeOff, Frown, Smile, Handshake, ArrowLeftRight, Infinity } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Landing = () => {
   const [chatMessages, setChatMessages] = useState([
@@ -75,7 +76,7 @@ const Landing = () => {
               Conecta con personas y planes de tu ciudad
             </h2>
             <p className="text-xl text-gray-600">
-              Descubre las mejores experiencias en tu ciudad y conoce nuevas personas cerca de ti mediante nuestro algoritmo de recomendación con la precisión de Google, y la cercanía de Nico :)
+              Descubre las mejores experiencias en tu ciudad y conoce nuevas personas cerca de ti mediante nuestro algoritmo de recomendación con la precisión de Google, y la cercanía de Nico <span className="inline">:)</span>
             </p>
             <div className="flex gap-4 pt-4">
               <Button size="lg" className="text-lg px-8">
@@ -204,33 +205,93 @@ const Landing = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">¿Por qué Aburrio?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Creado para transformar cómo descubres y disfrutas de tu ciudad
+              Porque las opciones actuales para conocer gente nueva y planes en tu ciudad son realmente nefastas
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300">
-              <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                <MapPin className="w-8 h-8 text-primary-700" />
+          <div className="grid grid-cols-3 gap-12 mb-16">
+            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+              <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <HeartCrack className="w-8 h-8 text-red-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Planes Localizados</h3>
-              <p className="text-gray-600">Encuentra actividades y eventos cerca de ti, con información detallada sobre ubicación y accesibilidad.</p>
+              <h3 className="text-xl font-semibold mb-2">Apps de Citas</h3>
+              <p className="text-gray-600">Prometen conexiones pero son un odioso e interminable loop de swipes con criterios superficiales.</p>
+              
+              <div className="mt-6 w-full h-20 bg-red-50 rounded-lg relative overflow-hidden">
+                <div className="absolute inset-0 flex items-center px-4">
+                  <div className="w-12 h-12 bg-white rounded-full flex-shrink-0 shadow-md animated-profile"></div>
+                  <div className="flex items-center justify-between w-full px-6">
+                    <ArrowLeftRight className="w-6 h-6 text-red-400" />
+                    <Infinity className="w-6 h-6 text-red-400" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300">
-              <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                <User className="w-8 h-8 text-primary-700" />
+            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
+              <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <EyeOff className="w-8 h-8 text-purple-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Conexiones Reales</h3>
-              <p className="text-gray-600">Conecta con personas con intereses similares y crea nuevas amistades en tu ciudad.</p>
+              <h3 className="text-xl font-semibold mb-2">Redes Sociales</h3>
+              <p className="text-gray-600">Nos enganchan a la pantalla en vez de ayudarnos a conocer gente, haciéndonos sentir solos y miserables.</p>
+              
+              <div className="mt-6 w-full h-20 bg-purple-50 rounded-lg relative overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Smartphone className="w-10 h-10 text-purple-400" />
+                  <div className="absolute inset-0 border-2 border-dashed border-purple-200 rounded-lg"></div>
+                  <Frown className="w-8 h-8 text-purple-400 absolute top-2 right-4" />
+                </div>
+              </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300">
-              <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                <Zap className="w-8 h-8 text-primary-700" />
+            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+              <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
+              <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Sparkles className="w-8 h-8 text-primary-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Algoritmo Preciso</h3>
-              <p className="text-gray-600">Nuestro sistema de recomendación aprende de tus preferencias para ofrecerte planes perfectos para ti.</p>
+              <h3 className="text-xl font-semibold mb-2">Aburrio</h3>
+              <p className="text-gray-600">Un algoritmo increíble que te sugiere perfiles con los que conectas de verdad. Se acabaron las tardes aburridas.</p>
+              
+              <div className="mt-6 w-full h-20 bg-primary-50 rounded-lg relative overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-around px-4">
+                  <div className="flex flex-col items-center">
+                    <Smile className="w-8 h-8 text-primary-400" />
+                    <span className="text-xs text-primary-600 mt-1">Tú</span>
+                  </div>
+                  <Handshake className="w-8 h-8 text-primary-500" />
+                  <div className="flex flex-col items-center">
+                    <Smile className="w-8 h-8 text-primary-400" />
+                    <span className="text-xs text-primary-600 mt-1">Nuevos amigos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-card p-10 border-l-4 border-primary-500 max-w-4xl mx-auto hover:shadow-xl transition-shadow">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center flex-shrink-0">
+                <Users className="w-16 h-16 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-primary-700 mb-4">La diferencia de Aburrio</h3>
+                <p className="text-gray-600 mb-4">
+                  Detrás de nuestro increíble algoritmo no está ninguna maliciosa compañía BigTech, sino <span className="font-semibold text-primary-600">Nico y Quino</span> (los fundadores de Aburrio) que quieren lo mismo que tú: conocer gente nueva y vivir experiencias geniales en su ciudad.
+                </p>
+                <div className="flex gap-3 mt-4">
+                  <div className="bg-primary-100 px-3 py-1 rounded-full text-primary-700 text-sm font-medium flex items-center gap-1">
+                    <Sparkles className="w-4 h-4" /> Conexiones reales
+                  </div>
+                  <div className="bg-primary-100 px-3 py-1 rounded-full text-primary-700 text-sm font-medium flex items-center gap-1">
+                    <Heart className="w-4 h-4" /> Sin swipes
+                  </div>
+                  <div className="bg-primary-100 px-3 py-1 rounded-full text-primary-700 text-sm font-medium flex items-center gap-1">
+                    <Target className="w-4 h-4" /> Experiencias locales
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
