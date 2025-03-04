@@ -1,7 +1,6 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight, Heart, HeartCrack, UserX, Smartphone, EyeOff, Frown, Smile, Handshake, ArrowLeftRight, Infinity, Coffee, MessageCircle, Walking } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight, Heart, HeartCrack, UserX, Smartphone, EyeOff, Frown, Smile, Handshake, ArrowLeftRight, Infinity, Coffee, MessageCircle, Walking, Footprints } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -55,7 +54,6 @@ const Landing = () => {
     }
   }, [chatMessages]);
   
-  // New state for typewriter effect
   const [typewriterText, setTypewriterText] = useState("quiero tomarme un café mañana por la tarde con alguien que hable inglés por algún bar del centro de Sevilla para mejorar mi inglés");
 
   return (
@@ -352,7 +350,7 @@ const Landing = () => {
             <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Walking className="w-8 h-8 text-primary-600" />
+                <Footprints className="w-8 h-8 text-primary-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">3. ¡A la calle!</h3>
               <p className="text-gray-600 mb-4">Queda con la gente nueva y disfruta de experiencias increíbles en tu ciudad. ¡Eso es lo importante!</p>
