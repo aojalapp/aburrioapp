@@ -68,7 +68,7 @@ const NavItem = ({
           : "text-inherit"
       } transition-colors duration-200`}>
         {React.cloneElement(icon as React.ReactElement, { 
-          className: `w-5 h-5 ${isActive && isPrimary ? "animate-pulse-gentle" : ""}` 
+          className: `w-5 h-5 ${isActive && isPrimary ? "pulse-gentle-animation" : ""}` 
         })}
       </div>
       <span className={`text-xs font-medium ${

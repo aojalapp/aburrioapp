@@ -72,8 +72,9 @@
     animation: float 5s infinite ease-in-out;
   }
 
-  .animate-pulse-gentle {
-    @apply animate-pulse-gentle;
+  /* Fix: Removed the circular dependency by not using @apply here */
+  .pulse-gentle-animation {
+    animation: pulse-gentle 3s infinite ease-in-out;
   }
 
   /* Navigation effects */
