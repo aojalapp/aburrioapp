@@ -1,11 +1,64 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Landing = () => {
+  const [chatMessages, setChatMessages] = useState([
+    { sender: "bot", text: "¡Hola! Soy NicoAI 👋 Me encantaría ayudarte a encontrar planes en tu ciudad. ¿Qué te apetece hacer hoy?" },
+  ]);
+  const [userInput, setUserInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [currentStage, setCurrentStage] = useState(0);
+  
+  const simulateChat = (input: string) => {
+    // Add user message
+    setChatMessages(prev => [...prev, { sender: "user", text: input }]);
+    setUserInput("");
+    setIsTyping(true);
+    
+    // Simulate bot thinking
+    setTimeout(() => {
+      let botResponse = "";
+      
+      // Simulate conversation flow based on stage
+      if (currentStage === 0) {
+        botResponse = "¡Genial! Para poder recomendarte planes personalizados, me gustaría conocerte un poco mejor. ¿Puedes decirme cuántos años tienes?";
+        setCurrentStage(1);
+      } else if (currentStage === 1) {
+        botResponse = "¡Perfecto! Y dime, ¿qué te gusta hacer en tu tiempo libre? (cine, deporte, música, arte...)";
+        setCurrentStage(2);
+      } else if (currentStage === 2) {
+        botResponse = "¡Excelente! Basado en tus intereses, he encontrado este plan que podría gustarte: \"Encuentro cultural en el Parque María Luisa\" - Hay 5 personas interesadas. ¿Te gustaría unirte?";
+        setCurrentStage(3);
+      } else {
+        botResponse = "¡Fantástico! Acabo de añadirte al plan. Te he enviado los detalles a tu perfil y podrás chatear con los demás participantes. ¡Que te diviertas!";
+        setCurrentStage(0);
+      }
+      
+      setChatMessages(prev => [...prev, { sender: "bot", text: botResponse }]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (userInput.trim()) {
+      simulateChat(userInput);
+    }
+  };
+
+  // Auto-scroll chat to bottom
+  useEffect(() => {
+    const chatContainer = document.getElementById("phone-chat-container");
+    if (chatContainer) {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+  }, [chatMessages]);
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-foreground">
-      {/* Hero Section */}
+      {/* Enhanced Hero Section with Interactive Phone */}
       <section className="relative min-h-screen flex items-center justify-between px-16 py-20 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary-100 opacity-60 blur-3xl"></div>
@@ -37,19 +90,81 @@ const Landing = () => {
         </div>
         
         <div className="w-1/2 flex justify-center">
-          <div className="relative w-80 h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
-            <img 
-              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-              alt="Aburrio App" 
-              className="w-full h-full object-cover rounded-[32px]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-            <div className="absolute bottom-0 w-full p-6">
-              <div className="glass-card p-4 mb-4">
-                <h3 className="text-primary-700 font-semibold">¡Planes cerca de ti!</h3>
-                <p className="text-sm text-gray-700">3 personas quieren ir al Parque María Luisa hoy</p>
-              </div>
+          <div className="relative w-[300px] h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
+            {/* Phone Chrome UI */}
+            <div className="absolute top-0 left-0 right-0 h-6 bg-black rounded-t-[32px] flex justify-center items-center">
+              <div className="w-32 h-4 bg-black rounded-b-xl"></div>
             </div>
+            
+            {/* App Interface */}
+            <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
+              {/* App Header */}
+              <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
+                <h3 className="font-semibold">NicoAI</h3>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                  <span className="text-sm">En línea</span>
+                </div>
+              </div>
+              
+              {/* Chat Area */}
+              <div id="phone-chat-container" className="h-[450px] overflow-y-auto p-4 space-y-3">
+                {chatMessages.map((msg, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`max-w-[80%] p-3 rounded-2xl ${
+                      msg.sender === "bot" 
+                        ? "bg-primary-100 text-gray-800" 
+                        : "bg-primary-500 text-white ml-auto"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                ))}
+                {isTyping && (
+                  <div className="max-w-[80%] p-3 rounded-2xl bg-primary-100 text-gray-800">
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Input Area */}
+              <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  placeholder="Escribe tu mensaje..."
+                  className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+                <button 
+                  type="submit" 
+                  className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+                  disabled={isTyping || !userInput.trim()}
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </form>
+              
+              {/* App Bottom Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
+            </div>
+          </div>
+          
+          {/* Floating Card */}
+          <div className="absolute -right-16 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
+            <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
+            <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
+          </div>
+          
+          {/* Another Floating Card */}
+          <div className="absolute -left-24 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
+            <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
+            <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
         </div>
       </section>
