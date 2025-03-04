@@ -1,9 +1,9 @@
-
 import { Card } from "@/components/ui/card";
 import { Calendar as CalendarIcon, Clock, MapPin, Users, Star, Filter } from "lucide-react";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import BackButton from "@/components/BackButton";
 
 const upcomingEvents = [
   {
@@ -48,9 +48,12 @@ const Calendar = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">My Calendar</h1>
-        <p className="text-primary-600">Your upcoming plans and events</p>
+      <div className="flex items-center mb-4">
+        <BackButton />
+        <div className="text-center flex-1">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">My Calendar</h1>
+          <p className="text-primary-600">Your upcoming plans and events</p>
+        </div>
       </div>
 
       <Card className="glass-card p-4 overflow-hidden">

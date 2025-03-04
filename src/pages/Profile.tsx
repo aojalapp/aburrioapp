@@ -6,6 +6,7 @@ import { LogOut, UserCog, Trash2, Wallet, Calendar, QrCode } from "lucide-react"
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import BackButton from "@/components/BackButton";
 
 const Profile = () => {
   const { toast } = useToast();
@@ -29,9 +30,12 @@ const Profile = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Your Profile</h1>
-        <p className="text-gray-600">Manage your account settings</p>
+      <div className="flex items-center mb-4">
+        <BackButton />
+        <div className="text-center flex-1">
+          <h1 className="text-2xl font-bold text-gray-900">Your Profile</h1>
+          <p className="text-gray-600">Manage your account settings</p>
+        </div>
       </div>
 
       <Card className="p-6 space-y-6">

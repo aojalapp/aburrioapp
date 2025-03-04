@@ -1,8 +1,8 @@
-
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Users, Search, Plus, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 
 const chatGroups = [
   {
@@ -40,7 +40,10 @@ const Chats = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Chats</h1>
+        <div className="flex items-center gap-2">
+          <BackButton to="/ai-chat" />
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Chats</h1>
+        </div>
         <div className="flex gap-2">
           <Button variant="outline" size="icon" className="rounded-full border-primary-200 text-primary-600 hover:bg-primary-50">
             <Search className="w-4 h-4" />

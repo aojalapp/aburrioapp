@@ -1,8 +1,8 @@
-
 import { Card } from "@/components/ui/card";
 import { Bell, UserPlus, Heart, Calendar, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import BackButton from "@/components/BackButton";
 
 type NotificationType = "join" | "like" | "accept" | "reminder";
 
@@ -86,10 +86,13 @@ const Notifications = () => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Notifications</h1>
-        <div className="text-xs font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
-          {notifications.filter(n => !n.read).length} new
+      <div className="flex items-center mb-4">
+        <BackButton />
+        <div className="flex items-center justify-between flex-1">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Notifications</h1>
+          <div className="text-xs font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+            {notifications.filter(n => !n.read).length} new
+          </div>
         </div>
       </div>
 

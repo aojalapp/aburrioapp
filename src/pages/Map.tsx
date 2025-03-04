@@ -1,10 +1,15 @@
 
+import BackButton from "@/components/BackButton";
+
 const Map = () => {
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="text-center mb-4">
-        <h1 className="text-2xl font-bold text-green-900">Planes Cercanos</h1>
-        <p className="text-green-600">Descubre qué está pasando a tu alrededor</p>
+      <div className="flex items-center mb-4">
+        <BackButton />
+        <div className="text-center flex-1">
+          <h1 className="text-2xl font-bold text-green-900">Planes Cercanos</h1>
+          <p className="text-green-600">Descubre qué está pasando a tu alrededor</p>
+        </div>
       </div>
       <div className="relative h-[calc(100vh-12rem)] rounded-2xl overflow-hidden shadow-lg bg-white">
         <img 
