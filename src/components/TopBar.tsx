@@ -22,40 +22,43 @@ const TopBar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white/70 backdrop-blur-lg border-b border-green-100 px-6 py-4 z-50 animate-slide-down">
-      <div className="max-w-lg mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-1">
+    <header className="fixed top-0 left-0 right-0 glass z-50 animate-slide-down">
+      <div className="max-w-lg mx-auto flex justify-between items-center px-6 py-4">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full hover:bg-green-50"
+            className="rounded-full hover:bg-primary-100 transition-colors duration-200 relative"
             asChild
           >
             <Link to="/profile">
-              <User className="w-5 h-5 text-green-500" />
+              <User className="w-5 h-5 text-primary-600" />
+              <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-primary-400 rounded-full border-2 border-white"></span>
             </Link>
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full hover:bg-green-50 relative"
+            className="rounded-full hover:bg-primary-100 transition-colors duration-200 relative"
             asChild
           >
             <Link to="/notifications">
-              <Bell className="w-5 h-5 text-green-500" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+              <Bell className="w-5 h-5 text-primary-600" />
+              <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center shadow-sm border border-white">
                 2
               </span>
             </Link>
           </Button>
         </div>
 
-        <span className="text-2xl font-bold text-green-500 tracking-wider">Aburrio</span>
+        <Link to="/">
+          <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent tracking-wider">Aburrio</span>
+        </Link>
 
         <Switch
           checked={isAvailable}
           onCheckedChange={handleAvailabilityChange}
-          className="w-16 h-8 bg-gray-200 data-[state=checked]:bg-green-500"
+          className="w-16 h-8 bg-gray-200 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-primary-500 data-[state=checked]:to-primary-600"
         >
           <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span className={`text-sm font-medium transition-opacity ${
@@ -66,7 +69,7 @@ const TopBar = () => {
           </span>
           <span className="block h-7 w-7 rounded-full bg-white shadow-lg ring-0 transition-transform duration-200 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[2.1rem]">
             <span className={`absolute inset-0 flex items-center justify-center text-xs font-bold ${
-              isAvailable ? "text-green-500" : "text-gray-400"
+              isAvailable ? "text-primary-500" : "text-gray-400"
             }`}>
               ABR
             </span>
