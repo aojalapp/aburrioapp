@@ -77,6 +77,25 @@
     animation: pulse-gentle 3s infinite ease-in-out;
   }
 
+  /* Andalusian flag effect */
+  .andalusian-title-bg {
+    position: relative;
+  }
+
+  .andalusian-title-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: linear-gradient(to bottom, #007A33 33%, white 33%, white 67%, #007A33 67%);
+    z-index: -1;
+    transform: rotate(-5deg);
+    opacity: 0.15;
+    border-radius: 0.5rem;
+  }
+
   /* Navigation effects */
   .nav-item {
     @apply relative;
