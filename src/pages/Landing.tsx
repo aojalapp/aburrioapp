@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Landing = () => {
@@ -150,78 +149,99 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Value Proposition Section - Replacing Testimonials */}
       <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 opacity-60 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-primary-100 opacity-30 blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Lo que dicen nuestros usuarios</h2>
+            <div className="relative andalusian-title-bg inline-block mb-4">
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+                Redefiniendo las conexiones sociales
+              </h2>
+            </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Miles de personas ya están disfrutando de Aburrio
+              Creando una forma completamente nueva de descubrir y vivir tu ciudad
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-8">
-            <div className="glass-card p-8">
-              <div className="flex gap-2 text-yellow-400 mb-4">
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
+          <div className="grid grid-cols-12 gap-8">
+            {/* Left side - stats & key metrics */}
+            <div className="col-span-4 space-y-8">
+              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
+                    <Target className="w-6 h-6 text-primary-700" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-primary-700">Precisión incomparable</h3>
+                </div>
+                <p className="text-gray-600">
+                  Nuestro algoritmo de recomendación es hasta 3 veces más preciso que otras plataformas sociales, ofreciéndote planes que realmente se adaptan a tus intereses y personalidad.
+                </p>
               </div>
-              <p className="text-gray-700 mb-4">
-                "Gracias a Aburrio he conocido gente maravillosa en Sevilla. Los planes que me recomienda son exactamente lo que busco."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-200 rounded-full"></div>
-                <div>
-                  <h4 className="font-semibold">Laura G.</h4>
-                  <p className="text-sm text-gray-500">Sevilla</p>
+              
+              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
+                    <Compass className="w-6 h-6 text-primary-700" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-primary-700">Descubrimiento local</h3>
+                </div>
+                <p className="text-gray-600">
+                  El 78% de nuestros usuarios descubren lugares de su propia ciudad que nunca habían visitado, ampliando sus horizontes sin salir de su entorno.
+                </p>
+              </div>
+            </div>
+            
+            {/* Center - main value proposition */}
+            <div className="col-span-4">
+              <div className="glass-card h-full p-10 flex flex-col justify-center items-center text-center border-2 border-primary-200 shadow-glow">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6">
+                  <Sparkles className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4 text-primary-800">El poder de la conexión</h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  Transformamos la forma en que las personas se conectan con su ciudad y entre sí, creando experiencias únicas que mejoran significativamente la calidad de vida.
+                </p>
+                <div className="bg-primary-100 px-4 py-2 rounded-full text-primary-700 font-medium">
+                  100% basado en intereses reales
                 </div>
               </div>
             </div>
-
-            <div className="glass-card p-8">
-              <div className="flex gap-2 text-yellow-400 mb-4">
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Increíble lo fácil que es usar esta app. Cada fin de semana descubro nuevos lugares en Málaga que ni sabía que existían."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-200 rounded-full"></div>
-                <div>
-                  <h4 className="font-semibold">Carlos M.</h4>
-                  <p className="text-sm text-gray-500">Málaga</p>
+            
+            {/* Right side - benefits & results */}
+            <div className="col-span-4 space-y-8">
+              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-primary-700" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-primary-700">Comunidades orgánicas</h3>
                 </div>
+                <p className="text-gray-600">
+                  A diferencia de otras apps, Aburrio crea conexiones basadas en intereses genuinos, formando comunidades reales que perduran más allá de la plataforma.
+                </p>
+              </div>
+              
+              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-primary-700" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-primary-700">Impacto económico</h3>
+                </div>
+                <p className="text-gray-600">
+                  Impulsamos la economía local al conectar a personas con negocios y eventos de su ciudad, generando un ciclo virtuoso de crecimiento comunitario.
+                </p>
               </div>
             </div>
-
-            <div className="glass-card p-8">
-              <div className="flex gap-2 text-yellow-400 mb-4">
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-                <Star className="fill-yellow-400" />
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Desde que uso Aburrio, nunca más he tenido que preocuparme por no tener planes. ¡Siempre hay algo interesante que hacer!"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-200 rounded-full"></div>
-                <div>
-                  <h4 className="font-semibold">Elena R.</h4>
-                  <p className="text-sm text-gray-500">Granada</p>
-                </div>
-              </div>
-            </div>
+          </div>
+          
+          <div className="mt-16 flex justify-center">
+            <Button size="lg" className="text-lg px-8" asChild>
+              <Link to="/signup">Descubre el potencial</Link>
+            </Button>
           </div>
         </div>
       </section>
