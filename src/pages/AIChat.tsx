@@ -46,16 +46,34 @@ const AIChat = () => {
   const [userData, setUserData] = useState<UserData>({});
   const [conversationState, setConversationState] = useState("recopilandoDatos");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [retryCount, setRetryCount] = useState(0);
   const maxRetries = 3;
 
+  // Mejorado: scroll al final cuando se añaden nuevos mensajes
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
+  // Nueva función mejorada para el scroll
   const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
   };
+
+  // Añadimos un listener para el tamaño de la ventana
+  useEffect(() => {
+    const handleResize = () => {
+      scrollToBottom();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleSend = () => {
     if (newMessage.trim()) {
@@ -162,6 +180,11 @@ const AIChat = () => {
         sender: "ai",
         content: data.content,
       }]);
+      
+      // Añadimos un pequeño retraso antes de hacer scroll
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
     } catch (error) {
       console.error("Error al obtener respuesta de IA:", error);
       
@@ -203,8 +226,12 @@ const AIChat = () => {
 
   return (
     <div className="fixed inset-0 pt-[4rem] pb-[5rem]">
-      <div className="absolute top-[4rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4">
-        <div className="space-y-4 py-4">
+      <div 
+        ref={containerRef}
+        className="absolute top-[4rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
+        <div className="space-y-4 py-4 min-h-full">
           {messages.map((message) => (
             <Card
               key={message.id}
@@ -226,7 +253,7 @@ const AIChat = () => {
               </div>
             </Card>
           )}
-          <div ref={bottomRef} />
+          <div ref={bottomRef} className="h-4" />
         </div>
       </div>
       
@@ -236,7 +263,7 @@ const AIChat = () => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Responde a las preguntas del asistente..."
-            onKeyPress={(e) => e.key === "Enter" && handleSend()}
+            onKeyDown={(e) => e.key === "Enter" && !isLoading && handleSend()}
             className="flex-1"
             disabled={isLoading}
           />
