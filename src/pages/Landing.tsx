@@ -12,13 +12,16 @@ const Landing = () => {
   const [currentStage, setCurrentStage] = useState(0);
   
   const simulateChat = (input: string) => {
+    // Add user message
     setChatMessages(prev => [...prev, { sender: "user", text: input }]);
     setUserInput("");
     setIsTyping(true);
     
+    // Simulate bot thinking
     setTimeout(() => {
       let botResponse = "";
       
+      // Simulate conversation flow based on stage
       if (currentStage === 0) {
         botResponse = "¡Genial! Para poder recomendarte planes personalizados, me gustaría conocerte un poco mejor. ¿Puedes decirme cuántos años tienes?";
         setCurrentStage(1);
@@ -45,6 +48,7 @@ const Landing = () => {
     }
   };
 
+  // Auto-scroll chat to bottom
   useEffect(() => {
     const chatContainer = document.getElementById("phone-chat-container");
     if (chatContainer) {
@@ -54,112 +58,118 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-foreground">
-      <section className="relative min-h-screen flex items-center justify-center px-16 py-20 overflow-hidden">
+      {/* Enhanced Hero Section with Interactive Phone */}
+      <section className="relative min-h-screen flex items-center justify-between px-16 py-20 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary-100 opacity-60 blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-primary-100 opacity-50 blur-3xl"></div>
         </div>
         
-        <div className="w-[70%] mx-auto flex flex-wrap items-center">
-          <div className="w-1/2 relative">
-            <div className="max-w-xl space-y-6">
-              <div className="relative andalusian-title-bg inline-block mb-4">
-                <h1 className="text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
-                  Aburrio
-                </h1>
+        <div className="w-1/2 relative">
+          <div className="max-w-xl space-y-6">
+            <div className="relative andalusian-title-bg inline-block mb-4">
+              <h1 className="text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+                Aburrio
+              </h1>
+            </div>
+            <h2 className="text-3xl font-medium text-gray-700">
+              Conecta con personas y planes de tu ciudad
+            </h2>
+            <p className="text-xl text-gray-600">
+              Descubre las mejores experiencias cerca de ti con nuestro algoritmo de recomendación increíblemente preciso.
+            </p>
+            <div className="flex gap-4 pt-4">
+              <Button size="lg" className="text-lg px-8">
+                Descargar App <ArrowRight className="ml-2" />
+              </Button>
+              <Button size="lg" variant="outline" className="text-lg px-8" asChild>
+                <Link to="/signup">Regístrate</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+        
+        <div className="w-1/2 flex justify-center">
+          <div className="relative w-[300px] h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
+            {/* Phone Chrome UI */}
+            <div className="absolute top-0 left-0 right-0 h-6 bg-black rounded-t-[32px] flex justify-center items-center">
+              <div className="w-32 h-4 bg-black rounded-b-xl"></div>
+            </div>
+            
+            {/* App Interface */}
+            <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
+              {/* App Header */}
+              <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
+                <h3 className="font-semibold">NicoAI</h3>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                  <span className="text-sm">En línea</span>
+                </div>
               </div>
-              <h2 className="text-3xl font-medium text-gray-700">
-                Conecta con personas y planes de tu ciudad
-              </h2>
-              <p className="text-xl text-gray-600">
-                Descubre las mejores experiencias cerca de ti con nuestro algoritmo de recomendación increíblemente preciso.
-              </p>
-              <div className="flex gap-4 pt-4">
-                <Button size="lg" className="text-lg px-8">
-                  Únete a la lista de espera <ArrowRight className="ml-2" />
-                </Button>
+              
+              {/* Chat Area */}
+              <div id="phone-chat-container" className="h-[450px] overflow-y-auto p-4 space-y-3">
+                {chatMessages.map((msg, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`max-w-[80%] p-3 rounded-2xl ${
+                      msg.sender === "bot" 
+                        ? "bg-primary-100 text-gray-800" 
+                        : "bg-primary-500 text-white ml-auto"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                ))}
+                {isTyping && (
+                  <div className="max-w-[80%] p-3 rounded-2xl bg-primary-100 text-gray-800">
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                      <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                    </div>
+                  </div>
+                )}
               </div>
+              
+              {/* Input Area */}
+              <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  placeholder="Escribe tu mensaje..."
+                  className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+                <button 
+                  type="submit" 
+                  className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+                  disabled={isTyping || !userInput.trim()}
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </form>
+              
+              {/* App Bottom Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
             </div>
           </div>
           
-          <div className="w-1/2 flex justify-center relative">
-            <div className="relative w-[300px] h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
-              <div className="absolute top-0 left-0 right-0 h-6 bg-black rounded-t-[32px] flex justify-center items-center">
-                <div className="w-32 h-4 bg-black rounded-b-xl"></div>
-              </div>
-              
-              <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
-                <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                      <div className="text-primary-600 font-bold text-lg">A</div>
-                    </div>
-                    <h3 className="font-semibold">Aburrio</h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span className="text-sm">NicoAI</span>
-                  </div>
-                </div>
-                
-                <div id="phone-chat-container" className="h-[430px] overflow-y-auto p-4 space-y-3">
-                  {chatMessages.map((msg, idx) => (
-                    <div 
-                      key={idx} 
-                      className={`max-w-[80%] p-3 rounded-2xl ${
-                        msg.sender === "bot" 
-                          ? "bg-primary-100 text-gray-800" 
-                          : "bg-primary-500 text-white ml-auto"
-                      }`}
-                    >
-                      {msg.text}
-                    </div>
-                  ))}
-                  {isTyping && (
-                    <div className="max-w-[80%] p-3 rounded-2xl bg-primary-100 text-gray-800">
-                      <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                        <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 p-3 border-t bg-white flex gap-2">
-                  <input
-                    type="text"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Escribe tu mensaje..."
-                    className="flex-1 p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                  <button 
-                    type="submit" 
-                    className="w-10 h-10 bg-primary-500 text-white rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
-                    disabled={isTyping || !userInput.trim()}
-                  >
-                    <Send className="w-5 h-5" />
-                  </button>
-                </form>
-                
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-black"></div>
-              </div>
-            </div>
-            
-            <div className="absolute right-0 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
-              <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
-              <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
-            </div>
-            
-            <div className="absolute left-6 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
-              <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
-              <p className="text-xs text-gray-600">Concierto en Plaza España</p>
-            </div>
+          {/* Floating Card */}
+          <div className="absolute -right-16 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
+            <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
+            <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
+          </div>
+          
+          {/* Another Floating Card */}
+          <div className="absolute -left-24 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
+            <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
+            <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
         </div>
       </section>
 
+      {/* Features Section */}
       <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -197,6 +207,7 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* How It Works Section */}
       <section className="py-20 px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -253,6 +264,7 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Value Proposition Section - Replacing Testimonials */}
       <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 opacity-60 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-primary-100 opacity-30 blur-3xl"></div>
@@ -270,6 +282,7 @@ const Landing = () => {
           </div>
 
           <div className="grid grid-cols-12 gap-8">
+            {/* Left side - stats & key metrics */}
             <div className="col-span-4 space-y-8">
               <div className="glass-card p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
@@ -296,6 +309,7 @@ const Landing = () => {
               </div>
             </div>
             
+            {/* Center - main value proposition */}
             <div className="col-span-4">
               <div className="glass-card h-full p-10 flex flex-col justify-center items-center text-center border-2 border-primary-200 shadow-glow">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6">
@@ -311,6 +325,7 @@ const Landing = () => {
               </div>
             </div>
             
+            {/* Right side - benefits & results */}
             <div className="col-span-4 space-y-8">
               <div className="glass-card p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
@@ -346,6 +361,7 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* App Features Section */}
       <section className="py-20 px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 gap-16 items-center">
@@ -412,20 +428,25 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* CTA Section */}
       <section className="py-20 px-16 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">¿Listo para descubrir tu ciudad?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Sé parte de los primeros en probar Aburrio y transformar tu experiencia social
+            Únete hoy a miles de personas que están viviendo experiencias increíbles con Aburrio
           </p>
-          <div className="flex justify-center">
+          <div className="flex gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-              Únete a la lista de espera <ArrowRight className="ml-2" />
+              Descargar App <ArrowRight className="ml-2" />
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8" asChild>
+              <Link to="/signup">Crear cuenta</Link>
             </Button>
           </div>
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="py-12 px-16 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-4 gap-8 mb-12">
