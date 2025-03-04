@@ -36,6 +36,9 @@ const App = () => (
             <Route path="map" element={<Map />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="wallet" element={<Wallet />} />
+            <Route path="calendar" element={<Calendar />} />
+            <Route path="tickets" element={<Navigate to="/wallet" replace />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
