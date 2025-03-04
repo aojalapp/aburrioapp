@@ -26,17 +26,17 @@ const Notifications = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-blue-900">Notifications</h1>
+        <h1 className="text-2xl font-bold text-green-900">Notifications</h1>
       </div>
 
       <div className="space-y-4">
         {notifications.map((notification) => (
           <Card 
             key={notification.id}
-            className="p-4 bg-white/70 backdrop-blur-sm border-blue-100 hover:border-blue-200 transition-all"
+            className="p-4 bg-white/70 backdrop-blur-sm border-green-100 hover:border-green-200 transition-all"
           >
-            <p className="text-blue-900">{notification.content}</p>
-            <p className="text-sm text-blue-500 mt-2">{notification.time}</p>
+            <p className="text-green-900">{notification.content}</p>
+            <p className="text-sm text-green-600 mt-2">{notification.time}</p>
           </Card>
         ))}
       </div>
