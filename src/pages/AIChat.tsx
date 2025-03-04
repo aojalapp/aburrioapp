@@ -46,6 +46,8 @@ const AIChat = () => {
   const [userData, setUserData] = useState<UserData>({});
   const [conversationState, setConversationState] = useState("recopilandoDatos");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const maxRetries = 3;
 
   useEffect(() => {
     scrollToBottom();
@@ -131,6 +133,9 @@ const AIChat = () => {
         content: msg.content
       }));
 
+      console.log("Enviando mensajes a Edge Function:", formattedMessages);
+      console.log("Enviando datos de usuario:", userData);
+
       // Llamamos a nuestra Edge Function
       const { data, error } = await supabase.functions.invoke("chat-ai", {
         body: { 
@@ -140,32 +145,56 @@ const AIChat = () => {
       });
 
       if (error) {
-        console.error("Error al obtener respuesta:", error);
-        toast({
-          title: "Error",
-          description: "No se pudo obtener una respuesta. Por favor, intenta de nuevo.",
-          variant: "destructive",
-        });
-        
-        setMessages(prevMessages => [...prevMessages, {
-          id: prevMessages.length + 1,
-          sender: "ai",
-          content: "Lo siento, ha ocurrido un error al procesar tu mensaje. ¿Podrías intentarlo de nuevo?",
-        }]);
-      } else {
-        // Añadimos la respuesta de la IA
-        setMessages(prevMessages => [...prevMessages, {
-          id: prevMessages.length + 1,
-          sender: "ai",
-          content: data.content,
-        }]);
+        console.error("Error al invocar Edge Function:", error);
+        throw new Error(`Error al invocar Edge Function: ${error.message || 'Error desconocido'}`);
       }
+
+      if (!data || !data.content) {
+        console.error("Respuesta inválida de Edge Function:", data);
+        throw new Error("La respuesta del servidor no tiene el formato esperado");
+      }
+
+      setRetryCount(0); // Reset retry count on success
+      
+      // Añadimos la respuesta de la IA
+      setMessages(prevMessages => [...prevMessages, {
+        id: prevMessages.length + 1,
+        sender: "ai",
+        content: data.content,
+      }]);
     } catch (error) {
       console.error("Error al obtener respuesta de IA:", error);
+      
+      // Implementación de reintento automático
+      if (retryCount < maxRetries) {
+        const nextRetry = retryCount + 1;
+        setRetryCount(nextRetry);
+        
+        toast({
+          title: "Reintentando conexión",
+          description: `Intento ${nextRetry} de ${maxRetries}...`,
+          variant: "default",
+        });
+        
+        // Esperar un momento antes de reintentar
+        setTimeout(() => {
+          fetchAIResponse(userMessage);
+        }, 2000);
+        
+        return;
+      }
+      
+      // Si se agotan los reintentos, mostrar mensaje de error
+      toast({
+        title: "Error",
+        description: "No se pudo conectar con el asistente. Por favor, intenta de nuevo más tarde.",
+        variant: "destructive",
+      });
+      
       setMessages(prev => [...prev, {
         id: prev.length + 1,
         sender: "ai",
-        content: "Lo siento, ha ocurrido un error al procesar tu mensaje. ¿Podrías intentarlo de nuevo?",
+        content: "Lo siento, ha ocurrido un error al procesar tu mensaje. Por favor, intenta de nuevo más tarde.",
       }]);
     } finally {
       setIsLoading(false);
@@ -209,8 +238,9 @@ const AIChat = () => {
             placeholder="Responde a las preguntas del asistente..."
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             className="flex-1"
+            disabled={isLoading}
           />
-          <Button onClick={handleSend} size="icon">
+          <Button onClick={handleSend} size="icon" disabled={isLoading || !newMessage.trim()}>
             <Send className="h-4 w-4" />
           </Button>
         </div>

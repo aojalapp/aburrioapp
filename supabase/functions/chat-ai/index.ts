@@ -16,16 +16,35 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, userData } = await req.json();
+    // Validate the request has a body
+    if (!req.body) {
+      throw new Error('La solicitud no contiene datos');
+    }
 
+    // Parse the request body
+    let messages, userData;
+    try {
+      const body = await req.json();
+      messages = body.messages;
+      userData = body.userData;
+      
+      if (!messages || !Array.isArray(messages)) {
+        throw new Error('El formato de mensajes no es válido');
+      }
+    } catch (parseError) {
+      console.error("Error al parsear la solicitud:", parseError);
+      throw new Error('Error al parsear la solicitud: ' + parseError.message);
+    }
+
+    // Validate API key
     if (!OPENAI_API_KEY) {
       console.error("Error: OPENAI_API_KEY no está configurado en las variables de entorno");
       throw new Error('OPENAI_API_KEY no está configurado en las variables de entorno');
     }
 
-    console.log("Enviando mensajes a OpenAI:", messages);
+    console.log("Enviando mensajes a OpenAI:", JSON.stringify(messages));
     if (userData) {
-      console.log("Datos de usuario recopilados:", userData);
+      console.log("Datos de usuario recopilados:", JSON.stringify(userData));
     }
 
     const systemPrompt = `Eres NicoAI, un asistente amigable que ayuda a los usuarios a crear planes sociales y conectar con otras personas. Responde siempre en español. Sé amable, útil y conversacional.
@@ -43,32 +62,54 @@ Tu objetivo es ayudar al usuario a organizar planes sociales siguiendo estos pas
 
 Es muy importante que sigas el flujo paso a paso, siendo natural y conversacional en todo momento. Mantén un tono casual y amigable.`;
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          { 
-            role: 'system', 
-            content: systemPrompt
-          },
-          ...messages
-        ],
-        temperature: 0.7,
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      console.error("Error de OpenAI:", error);
-      throw new Error(`Error de OpenAI: ${JSON.stringify(error)}`);
+    // Make the OpenAI API request
+    let openAIResponse;
+    try {
+      openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { 
+              role: 'system', 
+              content: systemPrompt
+            },
+            ...messages
+          ],
+          temperature: 0.7,
+        }),
+      });
+    } catch (fetchError) {
+      console.error("Error al comunicarse con OpenAI:", fetchError);
+      throw new Error(`Error al comunicarse con OpenAI: ${fetchError.message}`);
     }
 
-    const data = await response.json();
+    // Handle OpenAI API error responses
+    if (!openAIResponse.ok) {
+      const errorBody = await openAIResponse.text();
+      console.error("Error de OpenAI (Status:", openAIResponse.status, "):", errorBody);
+      throw new Error(`Error de OpenAI (Status: ${openAIResponse.status}): ${errorBody}`);
+    }
+
+    // Parse OpenAI API response
+    let data;
+    try {
+      data = await openAIResponse.json();
+    } catch (jsonError) {
+      console.error("Error al parsear la respuesta de OpenAI:", jsonError);
+      throw new Error(`Error al parsear la respuesta de OpenAI: ${jsonError.message}`);
+    }
+
+    // Validate OpenAI API response
+    if (!data || !data.choices || !data.choices[0] || !data.choices[0].message) {
+      console.error("Formato de respuesta de OpenAI inesperado:", data);
+      throw new Error('Formato de respuesta de OpenAI inesperado');
+    }
+
     console.log("Respuesta recibida de OpenAI");
 
     return new Response(JSON.stringify({ 
