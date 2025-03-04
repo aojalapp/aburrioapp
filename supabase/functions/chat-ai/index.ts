@@ -16,7 +16,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages, userData } = await req.json();
 
     if (!OPENAI_API_KEY) {
       console.error("Error: OPENAI_API_KEY no está configurado en las variables de entorno");
@@ -24,6 +24,24 @@ serve(async (req) => {
     }
 
     console.log("Enviando mensajes a OpenAI:", messages);
+    if (userData) {
+      console.log("Datos de usuario recopilados:", userData);
+    }
+
+    const systemPrompt = `Eres NicoAI, un asistente amigable que ayuda a los usuarios a crear planes sociales y conectar con otras personas. Responde siempre en español. Sé amable, útil y conversacional.
+
+Tu objetivo es ayudar al usuario a organizar planes sociales siguiendo estos pasos:
+
+1. PRIMER PASO - Recopilación de información básica:
+   Al inicio de la conversación, pregunta de manera natural por los datos básicos del usuario (edad, género, nacionalidad, idiomas, hobbies). Haz esto de forma conversacional, una pregunta a la vez.
+
+2. SEGUNDO PASO - Definición del plan:
+   Una vez recopilada la información básica, pregunta "¿Qué plan te apetece hacer hoy?". Cuando el usuario responda, pregunta por los detalles específicos (día, hora, lugar, con qué tipo de persona le gustaría realizarlo, etc.).
+
+3. TERCER PASO - Simulación de coincidencia:
+   Una vez recopilados todos los detalles, responde con un mensaje simulando que has encontrado un usuario compatible con las preferencias y el plan propuesto. Incluye algunas coincidencias basadas en los datos recopilados.
+
+Es muy importante que sigas el flujo paso a paso, siendo natural y conversacional en todo momento. Mantén un tono casual y amigable.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -36,7 +54,7 @@ serve(async (req) => {
         messages: [
           { 
             role: 'system', 
-            content: 'Eres NicoAI, un asistente amigable que ayuda a los usuarios a crear planes sociales. Responde siempre en español. Sé amable, útil y conversacional. Tu objetivo es ayudar a organizar eventos y actividades sociales.' 
+            content: systemPrompt
           },
           ...messages
         ],

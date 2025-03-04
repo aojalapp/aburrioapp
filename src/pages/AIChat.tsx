@@ -13,11 +13,28 @@ type Message = {
   content: string;
 };
 
+type UserData = {
+  edad?: string;
+  genero?: string;
+  nacionalidad?: string;
+  idiomas?: string[];
+  hobbies?: string[];
+  trabajo?: string;
+  planDetalles?: {
+    tipo?: string;
+    dia?: string;
+    hora?: string;
+    lugar?: string;
+    preferenciaPersona?: string;
+  };
+  [key: string]: any;
+};
+
 const initialMessages: Message[] = [
   {
     id: 1,
     sender: "ai",
-    content: "¡Hola! ¿Qué tipo de plan te gustaría hacer hoy?",
+    content: "¡Hola! Me gustaría conocerte un poco mejor para ayudarte a encontrar planes que se ajusten a tus gustos. Para empezar, ¿me podrías decir cuál es tu edad?",
   },
 ];
 
@@ -26,6 +43,8 @@ const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState<UserData>({});
+  const [conversationState, setConversationState] = useState("recopilandoDatos");
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,9 +67,60 @@ const AIChat = () => {
       setNewMessage("");
       setIsLoading(true);
       
+      // Extraemos información potencialmente útil del mensaje del usuario
+      extractUserData(newMessage);
+      
       // Enviamos el mensaje al backend
       fetchAIResponse(userMessage);
     }
+  };
+
+  const extractUserData = (message: string) => {
+    // Esta función es simplificada y se puede mejorar con análisis más avanzado
+    // La idea es capturar alguna información básica del usuario a partir de sus mensajes
+    const lowerMessage = message.toLowerCase();
+    
+    // Extraer edad
+    const edadMatch = lowerMessage.match(/tengo (\d+)( años)?/);
+    if (edadMatch) {
+      setUserData(prev => ({ ...prev, edad: edadMatch[1] }));
+    }
+    
+    // Trabajo
+    if (lowerMessage.includes("trabajo como") || lowerMessage.includes("trabajo de")) {
+      const trabajoMatch = lowerMessage.match(/trabajo (como|de) ([^,.]+)/);
+      if (trabajoMatch) {
+        setUserData(prev => ({ ...prev, trabajo: trabajoMatch[2].trim() }));
+      }
+    }
+    
+    // Si menciona un plan específico
+    if (lowerMessage.includes("café") || lowerMessage.includes("cafe")) {
+      setUserData(prev => ({
+        ...prev,
+        planDetalles: {
+          ...prev.planDetalles,
+          tipo: "café"
+        }
+      }));
+    }
+    
+    // Guarda información sobre el día
+    const diasSemana = ["lunes", "martes", "miércoles", "miercoles", "jueves", "viernes", "sábado", "sabado", "domingo"];
+    for (const dia of diasSemana) {
+      if (lowerMessage.includes(dia)) {
+        setUserData(prev => ({
+          ...prev,
+          planDetalles: {
+            ...prev.planDetalles,
+            dia: dia
+          }
+        }));
+        break;
+      }
+    }
+    
+    console.log("Datos actualizados del usuario:", userData);
   };
 
   const fetchAIResponse = async (userMessage: Message) => {
@@ -63,7 +133,10 @@ const AIChat = () => {
 
       // Llamamos a nuestra Edge Function
       const { data, error } = await supabase.functions.invoke("chat-ai", {
-        body: { messages: formattedMessages },
+        body: { 
+          messages: formattedMessages,
+          userData: userData
+        },
       });
 
       if (error) {
@@ -133,7 +206,7 @@ const AIChat = () => {
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Dime qué plan quieres hacer..."
+            placeholder="Responde a las preguntas del asistente..."
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             className="flex-1"
           />
