@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import Map from "./pages/Map";
 import Chats from "./pages/Chats";
 import GroupChat from "./pages/GroupChat";
+import Landing from "./pages/Landing";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/landing" element={<Landing />} />
           <Route path="/" element={<Navigate to="/ai-chat" replace />} />
           <Route path="/*" element={<Layout />}>
             <Route path="chats" element={<Chats />} />
