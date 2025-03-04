@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { MessageCircle, Bot, List } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 

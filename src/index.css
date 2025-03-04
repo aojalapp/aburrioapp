@@ -67,8 +67,9 @@
     @apply animate-fade-in animate-scale-in;
   }
 
-  .animate-float {
-    @apply animate-float;
+  /* Fix: Removed the circular dependency by not using @apply here */
+  .float-animation {
+    animation: float 5s infinite ease-in-out;
   }
 
   .animate-pulse-gentle {
