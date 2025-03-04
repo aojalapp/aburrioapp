@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send } from "lucide-react";
@@ -80,10 +81,7 @@ const Landing = () => {
             </p>
             <div className="flex gap-4 pt-4">
               <Button size="lg" className="text-lg px-8">
-                Descargar App <ArrowRight className="ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8" asChild>
-                <Link to="/signup">Regístrate</Link>
+                Únete a la lista de espera <ArrowRight className="ml-2" />
               </Button>
             </div>
           </div>
@@ -98,17 +96,25 @@ const Landing = () => {
             
             {/* App Interface */}
             <div className="absolute inset-0 pt-6 bg-gradient-to-b from-primary-50 to-white">
-              {/* App Header */}
-              <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
-                <h3 className="font-semibold">NicoAI</h3>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                  <span className="text-sm">En línea</span>
+              {/* App Header with Logo */}
+              <div className="bg-primary-600 text-white p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                      <div className="text-primary-600 font-bold text-lg">A</div>
+                    </div>
+                    <h3 className="font-semibold">Aburrio</h3>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                    <span className="text-sm">En línea</span>
+                  </div>
                 </div>
+                <div className="mt-2 text-xs opacity-80">NicoAI - Tu asistente personal</div>
               </div>
               
               {/* Chat Area */}
-              <div id="phone-chat-container" className="h-[450px] overflow-y-auto p-4 space-y-3">
+              <div id="phone-chat-container" className="h-[420px] overflow-y-auto p-4 space-y-3">
                 {chatMessages.map((msg, idx) => (
                   <div 
                     key={idx} 
@@ -155,14 +161,13 @@ const Landing = () => {
             </div>
           </div>
           
-          {/* Floating Card */}
-          <div className="absolute -right-16 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
+          {/* Floating Cards - Fixed positioning to stay within the viewport */}
+          <div className="absolute top-1/3 -right-8 glass-card p-4 animate-float-slow shadow-xl max-w-[180px]">
             <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
             <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
           </div>
           
-          {/* Another Floating Card */}
-          <div className="absolute -left-24 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
+          <div className="absolute bottom-1/3 -left-8 glass-card p-4 animate-float-slow-reverse shadow-xl max-w-[180px]">
             <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
             <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
@@ -433,14 +438,11 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">¿Listo para descubrir tu ciudad?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Únete hoy a miles de personas que están viviendo experiencias increíbles con Aburrio
+            Únete hoy a nuestra lista de espera y sé de los primeros en probar Aburrio
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary-700 hover:bg-gray-100 text-lg px-8">
-              Descargar App <ArrowRight className="ml-2" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8" asChild>
-              <Link to="/signup">Crear cuenta</Link>
+              Únete a la lista de espera <ArrowRight className="ml-2" />
             </Button>
           </div>
         </div>
