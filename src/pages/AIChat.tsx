@@ -228,10 +228,10 @@ const AIChat = () => {
     <div className="fixed inset-0 pt-[4rem] pb-[5rem]">
       <div 
         ref={containerRef}
-        className="absolute top-[4rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4"
+        className="absolute top-[4rem] bottom-[5rem] left-0 right-0 overflow-y-auto px-4"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        <div className="space-y-4 py-4 min-h-full">
+        <div className="space-y-4 py-4 pb-8 min-h-full">
           {messages.map((message) => (
             <Card
               key={message.id}
@@ -253,7 +253,7 @@ const AIChat = () => {
               </div>
             </Card>
           )}
-          <div ref={bottomRef} className="h-4" />
+          <div ref={bottomRef} className="h-16" />
         </div>
       </div>
       
