@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send } from "lucide-react";
@@ -60,7 +61,7 @@ const Landing = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-primary-100 opacity-50 blur-3xl"></div>
         </div>
         
-        <div className="w-[70%] mx-auto flex flex-wrap items-center">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center">
           <div className="w-1/2 relative">
             <div className="max-w-xl space-y-6">
               <div className="relative andalusian-title-bg inline-block mb-4">
@@ -147,12 +148,12 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="absolute right-0 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
+            <div className="absolute right-12 top-1/3 glass-card p-4 animate-float-slow shadow-xl">
               <p className="text-primary-700 font-semibold text-sm">¡5 personas cerca de ti!</p>
               <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
             </div>
             
-            <div className="absolute left-6 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
+            <div className="absolute left-12 bottom-1/3 glass-card p-4 animate-float-slow-reverse shadow-xl">
               <p className="text-primary-700 font-semibold text-sm">¡Nuevo plan!</p>
               <p className="text-xs text-gray-600">Concierto en Plaza España</p>
             </div>
