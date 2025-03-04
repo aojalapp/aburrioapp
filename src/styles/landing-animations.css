@@ -47,3 +47,109 @@
 .shadow-glow {
   box-shadow: 0 0 20px rgba(186, 230, 253, 0.4);
 }
+
+/* Dating app swipe animation */
+.dating-app-swipe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-card {
+  position: absolute;
+  width: 70px;
+  height: 100px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+}
+
+.profile-card-1 {
+  animation: swipe-left 3s infinite;
+  z-index: 3;
+  background-image: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+}
+
+.profile-card-2 {
+  animation: swipe-right 3s infinite;
+  animation-delay: 1s;
+  z-index: 2;
+  background-image: linear-gradient(to bottom, #fee2e2, #fecaca);
+}
+
+.profile-card-3 {
+  animation: swipe-left 3s infinite;
+  animation-delay: 2s;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, #dbeafe, #bfdbfe);
+}
+
+@keyframes swipe-left {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-100px) rotate(-30deg);
+    opacity: 0;
+  }
+  31% {
+    transform: translateX(80px) rotate(5deg);
+    opacity: 0;
+  }
+  32% {
+    transform: translateX(80px) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes swipe-right {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(100px) rotate(30deg);
+    opacity: 0;
+  }
+  31% {
+    transform: translateX(-80px) rotate(-5deg);
+    opacity: 0;
+  }
+  32% {
+    transform: translateX(-80px) rotate(-5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Typewriter effect */
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #38bdf8;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: 0.05em;
+  animation: typing 8s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  0% { width: 0 }
+  50% { width: 100% }
+  90% { width: 100% }
+  100% { width: 0 }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #38bdf8 }
+}
