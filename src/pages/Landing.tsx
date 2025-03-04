@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, MapPin, MessageSquare, Star, User, Zap, Target, Compass, Users, Shield, Sparkles, Rocket, Send, ChevronRight, Heart, HeartCrack, UserX, Smartphone, EyeOff, Frown, Smile, Handshake, ArrowLeftRight, Infinity, Coffee, MessageCircle, Footprints } from "lucide-react";
@@ -69,7 +68,7 @@ const Landing = () => {
           <div className="max-w-xl space-y-6">
             <div className="relative andalusian-title-bg inline-block mb-4">
               <h1 className="text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
-                Aburrio
+                Aburrio.app
               </h1>
               <span className="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded-full absolute -top-2 -right-8 transform rotate-12">
                 Producto 100% andaluz
@@ -412,7 +411,7 @@ const Landing = () => {
                   <h3 className="text-2xl font-semibold text-primary-700">Descubrimiento local</h3>
                 </div>
                 <p className="text-gray-600">
-                  El 78% de nuestros usuarios descubren lugares de su propia ciudad que nunca habían visitado, ampliando sus horizontes sin salir de su entorno.
+                  Nuestros usuarios descubren lugares de su propia ciudad que nunca habían visitado, ampliando sus horizontes sin salir de su entorno.
                 </p>
               </div>
             </div>
@@ -469,60 +468,31 @@ const Landing = () => {
 
       <section className="py-20 px-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="relative andalusian-title-bg inline-block mb-4">
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
-                  Funcionalidades
-                </h2>
-              </div>
-              <p className="text-xl text-gray-600 mb-8">
-                Diseñada para ofrecerte la mejor experiencia
-              </p>
-
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center shrink-0">
-                    <Calendar className="w-6 h-6 text-primary-700" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-1">Calendario inteligente</h3>
-                    <p className="text-gray-600">Organiza tus planes y recibe recordatorios de tus próximos eventos.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-6 h-6 text-primary-700" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-1">Chat en grupo</h3>
-                    <p className="text-gray-600">Comunícate fácilmente con otros participantes del plan.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary-100 flex items-center justify-center shrink-0">
-                    <MapPin className="w-6 h-6 text-primary-700" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-1">Mapas detallados</h3>
-                    <p className="text-gray-600">Encuentra fácilmente la ubicación exacta de cada plan o evento.</p>
-                  </div>
-                </div>
-              </div>
+          <div className="text-center">
+            <div className="relative andalusian-title-bg inline-block mb-4">
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+                ¿Listo para unirte?
+              </h2>
             </div>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              Sé uno de los primeros en experimentar la nueva forma de descubrir tu ciudad y conocer gente afín a tus intereses
+            </p>
 
-            <div className="flex justify-center">
-              <div className="relative w-80 h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
-                <img 
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-                  alt="Beautiful landscape"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            <Button size="lg" className="text-lg px-8 mb-12">
+              Únete a la lista de espera <ArrowRight className="ml-2" />
+            </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-12 px-16 bg-gradient-to-br from-primary-50 to-white text-center">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-primary-700 font-medium mb-4">
+            Hecho con amor y dedicación por Joaquín Carretero Martínez y Nicolás Vela Martínez, de Andalucía para el mundo
+          </p>
+          <p className="text-sm text-gray-600">
+            Aburrio.app | Todos los derechos reservados © {new Date().getFullYear()}
+          </p>
         </div>
       </section>
     </div>
