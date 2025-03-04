@@ -27,8 +27,8 @@ const Calendar = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-blue-900">My Calendar</h1>
-        <p className="text-blue-600">Your upcoming plans and events</p>
+        <h1 className="text-2xl font-bold text-green-900">My Calendar</h1>
+        <p className="text-green-600">Your upcoming plans and events</p>
       </div>
 
       <Card className="p-4 bg-white/80 backdrop-blur-sm">
@@ -36,20 +36,20 @@ const Calendar = () => {
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-lg border-blue-100"
+          className="rounded-lg border-green-100"
         />
       </Card>
 
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold text-blue-900">Upcoming Plans</h2>
+        <h2 className="text-lg font-semibold text-green-900">Upcoming Plans</h2>
         {upcomingEvents.map((event) => (
           <Card
             key={event.id}
-            className="p-4 bg-white/80 backdrop-blur-sm border-blue-100 hover:border-blue-200 transition-all"
+            className="p-4 bg-white/80 backdrop-blur-sm border-green-100 hover:border-green-200 transition-all"
           >
             <div className="space-y-2">
-              <h3 className="font-medium text-blue-900">{event.title}</h3>
-              <div className="flex items-center gap-4 text-sm text-blue-600">
+              <h3 className="font-medium text-green-900">{event.title}</h3>
+              <div className="flex items-center gap-4 text-sm text-green-600">
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="w-4 h-4" />
                   <span>{new Date(event.date).toLocaleDateString()}</span>
@@ -59,7 +59,7 @@ const Calendar = () => {
                   <span>{event.time}</span>
                 </div>
               </div>
-              <p className="text-sm text-blue-500">{event.location}</p>
+              <p className="text-sm text-green-500">{event.location}</p>
             </div>
           </Card>
         ))}

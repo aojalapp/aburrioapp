@@ -38,31 +38,31 @@ const Chats = () => {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-blue-900">Chats</h1>
-        <p className="text-blue-600">Your plan conversations</p>
+        <h1 className="text-2xl font-bold text-green-900">Chats</h1>
+        <p className="text-green-600">Your plan conversations</p>
       </div>
 
       <div className="space-y-2">
         {chatGroups.map((chat) => (
           <Link key={chat.id} to={`/chat/${chat.id}`}>
-            <Card className="p-4 hover:bg-blue-50/50 transition-colors">
+            <Card className="p-4 hover:bg-green-50/50 transition-colors">
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Users className="h-6 w-6 text-blue-500" />
+                <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                  <Users className="h-6 w-6 text-green-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start">
-                    <h3 className="font-medium text-blue-900 truncate">
+                    <h3 className="font-medium text-green-900 truncate">
                       {chat.name}
                     </h3>
-                    <span className="text-xs text-blue-400 whitespace-nowrap ml-2">
+                    <span className="text-xs text-green-400 whitespace-nowrap ml-2">
                       {chat.time}
                     </span>
                   </div>
-                  <p className="text-sm text-blue-600 truncate">
+                  <p className="text-sm text-green-600 truncate">
                     {chat.lastMessage}
                   </p>
-                  <div className="text-xs text-blue-400 mt-1">
+                  <div className="text-xs text-green-400 mt-1">
                     {chat.members} members
                   </div>
                 </div>

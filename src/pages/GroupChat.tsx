@@ -63,7 +63,7 @@ const GroupChat = () => {
             <ArrowLeft className="h-5 w-5" />
           </Link>
         </Button>
-        <h1 className="font-semibold text-blue-900">{chat.name}</h1>
+        <h1 className="font-semibold text-green-900">{chat.name}</h1>
       </div>
 
       <div className="absolute top-[8rem] bottom-[4rem] left-0 right-0 overflow-y-auto px-4">
@@ -73,7 +73,7 @@ const GroupChat = () => {
               key={message.id}
               className={`p-4 max-w-[80%] ${
                 message.sender === "You"
-                  ? "ml-auto bg-blue-500 text-white"
+                  ? "ml-auto bg-green-500 text-white"
                   : "mr-auto bg-white"
               }`}
             >
