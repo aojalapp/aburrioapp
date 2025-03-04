@@ -58,29 +58,29 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-foreground">
-      <section className="relative min-h-screen flex items-center justify-between px-16 py-20 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between px-4 md:px-16 py-12 md:py-20 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary-100 opacity-60 blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-primary-100 opacity-50 blur-3xl"></div>
         </div>
         
-        <div className="w-1/2 relative">
-          <div className="max-w-xl space-y-6">
+        <div className="w-full md:w-1/2 relative mb-12 md:mb-0">
+          <div className="max-w-xl mx-auto md:mx-0 space-y-6 text-center md:text-left">
             <div className="relative andalusian-title-bg inline-block mb-4">
-              <h1 className="text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
                 Aburrio.app
               </h1>
               <span className="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded-full absolute -top-2 -right-8 transform rotate-12">
                 Producto 100% andaluz
               </span>
             </div>
-            <h2 className="text-3xl font-medium text-gray-700">
+            <h2 className="text-2xl md:text-3xl font-medium text-gray-700">
               Conecta con personas y planes de tu ciudad
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-gray-600">
               Descubre las mejores experiencias en tu ciudad y conoce nuevas personas cerca de ti mediante nuestro algoritmo de recomendación con la precisión de Google, y la cercanía de Nico <span className="inline">:)</span>
             </p>
-            <div className="flex gap-4 pt-4">
+            <div className="flex justify-center md:justify-start gap-4 pt-4">
               <Button size="lg" className="text-lg px-8">
                 Únete a la lista de espera <ArrowRight className="ml-2" />
               </Button>
@@ -88,8 +88,8 @@ const Landing = () => {
           </div>
         </div>
         
-        <div className="w-1/2 flex justify-center relative">
-          <div className="relative w-[300px] h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
+        <div className="w-full md:w-1/2 flex justify-center relative">
+          <div className="relative w-[280px] md:w-[300px] h-[560px] md:h-[600px] bg-gradient-to-br from-primary-100 to-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-white">
             <div className="absolute top-0 left-0 right-0 h-6 bg-black rounded-t-[32px] flex justify-center items-center">
               <div className="w-32 h-4 bg-black rounded-b-xl"></div>
             </div>
@@ -190,29 +190,29 @@ const Landing = () => {
             )}
           </div>
           
-          <div className="absolute top-20 right-0 glass-card p-2 animate-float-slow shadow-xl max-w-[120px]">
+          <div className="absolute top-20 right-0 glass-card p-2 animate-float-slow shadow-xl max-w-[120px] hidden md:block">
             <p className="text-primary-700 font-semibold text-xs">¡5 personas cerca de ti!</p>
             <p className="text-xs text-gray-600">Buscando planes ahora mismo</p>
           </div>
           
-          <div className="absolute bottom-20 left-0 glass-card p-2 animate-float-slow-reverse shadow-xl max-w-[120px]">
+          <div className="absolute bottom-20 left-0 glass-card p-2 animate-float-slow-reverse shadow-xl max-w-[120px] hidden md:block">
             <p className="text-primary-700 font-semibold text-xs">¡Nuevo plan!</p>
             <p className="text-xs text-gray-600">Concierto en Plaza España</p>
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-12 md:py-20 px-4 md:px-16 bg-gradient-to-br from-primary-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">¿Por qué Aburrio?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Por qué Aburrio?</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Porque las opciones actuales para conocer gente nueva y planes en tu ciudad son realmente nefastas
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-12 mb-16">
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-16">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
               <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <HeartCrack className="w-8 h-8 text-red-500" />
@@ -235,7 +235,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
               <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <EyeOff className="w-8 h-8 text-purple-500" />
@@ -252,7 +252,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Sparkles className="w-8 h-8 text-primary-500" />
@@ -276,17 +276,17 @@ const Landing = () => {
             </div>
           </div>
 
-          <div className="glass-card p-10 border-l-4 border-primary-500 max-w-4xl mx-auto hover:shadow-xl transition-shadow">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center flex-shrink-0">
-                <Users className="w-16 h-16 text-white" />
+          <div className="glass-card p-6 md:p-10 border-l-4 border-primary-500 max-w-4xl mx-auto hover:shadow-xl transition-shadow">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center flex-shrink-0">
+                <Users className="w-12 h-12 md:w-16 md:h-16 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-primary-700 mb-4">La diferencia de Aburrio</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-primary-700 mb-4 text-center md:text-left">La diferencia de Aburrio</h3>
                 <p className="text-gray-600 mb-4">
                   Detrás de nuestro increíble algoritmo no está ninguna maliciosa compañía BigTech, sino <span className="font-semibold text-primary-600">Nico y Quino</span> (los fundadores de Aburrio) que quieren lo mismo que tú: conocer gente nueva y vivir experiencias geniales en su ciudad.
                 </p>
-                <div className="flex gap-3 mt-4">
+                <div className="flex flex-wrap gap-2 md:gap-3 mt-4 justify-center md:justify-start">
                   <div className="bg-primary-100 px-3 py-1 rounded-full text-primary-700 text-sm font-medium flex items-center gap-1">
                     <Sparkles className="w-4 h-4" /> Conexiones reales
                   </div>
@@ -303,17 +303,17 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="py-20 px-16 bg-white">
+      <section className="py-12 md:py-20 px-4 md:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">¿Cómo funciona?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Cómo funciona?</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Es tan sencillo como seguir estos pasos
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-12">
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <MessageCircle className="w-8 h-8 text-primary-600" />
@@ -328,7 +328,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Target className="w-8 h-8 text-primary-600" />
@@ -347,7 +347,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="glass-card p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
+            <div className="glass-card p-6 md:p-8 flex flex-col items-center text-center transition-all hover:-translate-y-2 duration-300 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
               <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Footprints className="w-8 h-8 text-primary-600" />
@@ -373,42 +373,42 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="py-20 px-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden">
+      <section className="py-12 md:py-20 px-4 md:px-16 bg-gradient-to-br from-primary-50 to-white relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 opacity-60 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-primary-100 opacity-30 blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <div className="relative andalusian-title-bg inline-block mb-4">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
                 Redefiniendo las conexiones sociales
               </h2>
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Creando una forma completamente nueva de descubrir y vivir tu ciudad
             </p>
           </div>
 
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-4 space-y-8">
-              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div className="md:col-span-4 space-y-6 md:space-y-8">
+              <div className="glass-card p-6 md:p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
                     <Target className="w-6 h-6 text-primary-700" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-primary-700">Precisión incomparable</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold text-primary-700">Precisión incomparable</h3>
                 </div>
                 <p className="text-gray-600">
                   Nuestro algoritmo de recomendación es hasta 3 veces más preciso que otras plataformas sociales, ofreciéndote planes que realmente se adaptan a tus intereses y personalidad.
                 </p>
               </div>
               
-              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+              <div className="glass-card p-6 md:p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
                     <Compass className="w-6 h-6 text-primary-700" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-primary-700">Descubrimiento local</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold text-primary-700">Descubrimiento local</h3>
                 </div>
                 <p className="text-gray-600">
                   Nuestros usuarios descubren lugares de su propia ciudad que nunca habían visitado, ampliando sus horizontes sin salir de su entorno.
@@ -416,13 +416,13 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="col-span-4">
-              <div className="glass-card h-full p-10 flex flex-col justify-center items-center text-center border-2 border-primary-200 shadow-glow">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6">
-                  <Sparkles className="w-10 h-10 text-white" />
+            <div className="md:col-span-4">
+              <div className="glass-card h-full p-6 md:p-10 flex flex-col justify-center items-center text-center border-2 border-primary-200 shadow-glow">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6">
+                  <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-primary-800">El poder de la conexión</h3>
-                <p className="text-lg text-gray-600 mb-6">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-primary-800">El poder de la conexión</h3>
+                <p className="text-base md:text-lg text-gray-600 mb-6">
                   Transformamos la forma en que las personas se conectan con su ciudad y entre sí, creando experiencias únicas que mejoran significativamente la calidad de vida.
                 </p>
                 <div className="bg-primary-100 px-4 py-2 rounded-full text-primary-700 font-medium">
@@ -431,25 +431,25 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="col-span-4 space-y-8">
-              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+            <div className="md:col-span-4 space-y-6 md:space-y-8">
+              <div className="glass-card p-6 md:p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
                     <Users className="w-6 h-6 text-primary-700" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-primary-700">Comunidades orgánicas</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold text-primary-700">Comunidades orgánicas</h3>
                 </div>
                 <p className="text-gray-600">
                   A diferencia de otras apps, Aburrio crea conexiones basadas en intereses genuinos, formando comunidades reales que perduran más allá de la plataforma.
                 </p>
               </div>
               
-              <div className="glass-card p-8 border-l-4 border-l-primary-500">
+              <div className="glass-card p-6 md:p-8 border-l-4 border-l-primary-500">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center">
                     <Rocket className="w-6 h-6 text-primary-700" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-primary-700">Impacto económico</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold text-primary-700">Impacto económico</h3>
                 </div>
                 <p className="text-gray-600">
                   Impulsamos la economía local al conectar a personas con negocios y eventos de su ciudad, generando un ciclo virtuoso de crecimiento comunitario.
@@ -458,7 +458,7 @@ const Landing = () => {
             </div>
           </div>
           
-          <div className="mt-16 flex justify-center">
+          <div className="mt-12 md:mt-16 flex justify-center">
             <Button size="lg" className="text-lg px-8" asChild>
               <Link to="/signup">Descubre el potencial</Link>
             </Button>
@@ -466,15 +466,15 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="py-20 px-16 bg-white">
+      <section className="py-12 md:py-20 px-4 md:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <div className="relative andalusian-title-bg inline-block mb-4">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-700 to-primary-800 bg-clip-text text-transparent relative z-10">
                 ¿Listo para unirte?
               </h2>
             </div>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Sé uno de los primeros en experimentar la nueva forma de descubrir tu ciudad y conocer gente afín a tus intereses
             </p>
 
@@ -485,12 +485,12 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="py-12 px-16 bg-gradient-to-br from-primary-50 to-white text-center">
+      <section className="py-8 md:py-12 px-4 md:px-16 bg-gradient-to-br from-primary-50 to-white text-center">
         <div className="max-w-4xl mx-auto">
-          <p className="text-primary-700 font-medium mb-4">
+          <p className="text-primary-700 font-medium mb-4 text-sm md:text-base">
             Hecho con amor y dedicación por Joaquín Carretero Martínez y Nicolás Vela Martínez, de Andalucía para el mundo
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-xs md:text-sm text-gray-600">
             Aburrio.app | Todos los derechos reservados © {new Date().getFullYear()}
           </p>
         </div>
